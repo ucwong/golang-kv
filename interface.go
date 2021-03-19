@@ -1,7 +1,8 @@
 package bucket
 
 type Bucket interface {
-	New(i int) error
-	Get(k []byte) ([]byte, error)
+	Get(k []byte) []byte
 	Set(k, v []byte) error
+	Del(k []byte) error
+	Close() error
 }
