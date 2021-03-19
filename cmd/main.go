@@ -12,5 +12,12 @@ func main() {
 	v := db.Get([]byte("x"))
 	fmt.Println("..." + string(v))
 	db.Del([]byte("x"))
-	defer db.Close()
+	db.Close()
+
+	db = bucket.Badger()
+	db.Set([]byte("x"), []byte("y"))
+	v = db.Get([]byte("x"))
+	fmt.Println("..." + string(v))
+	db.Del([]byte("x"))
+	db.Close()
 }
