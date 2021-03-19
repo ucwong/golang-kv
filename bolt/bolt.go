@@ -12,6 +12,8 @@ func New() *Bolt {
 	b := &Bolt{}
 	if db, err := bolt.Open(".bolt", 0600, nil); err == nil {
 		b.engine = db
+	} else {
+		panic("bolt open failed")
 	}
 	return b
 }

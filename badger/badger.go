@@ -12,6 +12,8 @@ func New() *Badger {
 	b := &Badger{}
 	if bg, err := badger.Open(badger.DefaultOptions(".badger")); err == nil {
 		b.engine = bg
+	} else {
+		panic("badger open failed")
 	}
 	return b
 }
