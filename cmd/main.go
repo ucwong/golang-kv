@@ -7,7 +7,7 @@ import (
 
 func main() {
 	var db bucket.Bucket
-	db = bucket.New()
+	db = bucket.Bolt()
 	db.Set([]byte("x"), []byte("y"))
 	v := db.Get([]byte("x"))
 	fmt.Println("..." + string(v))
