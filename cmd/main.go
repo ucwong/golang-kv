@@ -11,13 +11,20 @@ func main() {
 	db.Set([]byte("x"), []byte("y"))
 	v := db.Get([]byte("x"))
 	fmt.Println("..." + string(v))
-	db.Del([]byte("x"))
 	db.Close()
 
 	db = bucket.New()
 	db.Set([]byte("x"), []byte("y"))
 	v = db.Get([]byte("x"))
 	fmt.Println("..." + string(v))
-	db.Del([]byte("x"))
+	//db.Close()
+
+	db.Set([]byte("xxy"), []byte("xxy"))
+	db.Set([]byte("xxxy"), []byte("xxxy"))
+	res := db.Prefix([]byte("x"))
+	for _, i := range res {
+		fmt.Printf("...%v...%s\n", len(res), string(i))
+	}
+	db.Del([]byte("xx"))
 	db.Close()
 }

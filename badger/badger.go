@@ -41,6 +41,30 @@ func (b *Badger) Del(k []byte) error {
 	return nil
 }
 
+func (b *Badger) Prefix(k []byte) (res [][]byte) {
+	b.engine.View(func(txn *badger.Txn) error {
+		it := txn.NewIterator(badger.DefaultIteratorOptions)
+		defer it.Close()
+		for it.Seek(k); it.ValidForPrefix(k); it.Next() {
+			item := it.Item()
+			item.Value(func(v []byte) error {
+				res = append(res, v)
+				return nil
+			})
+		}
+		return nil
+	})
+	return
+}
+
+func (b *Badger) Suffix(k []byte) (res [][]byte) {
+	return nil
+}
+
+func (b *Badger) Scan() (res [][]byte) {
+	return nil
+}
+
 func (b *Badger) Close() error {
 	b.engine.Close()
 	return nil

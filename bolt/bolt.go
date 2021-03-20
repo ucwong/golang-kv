@@ -45,6 +45,18 @@ func (b *Bolt) Del(k []byte) error {
 	return nil
 }
 
+func (b *Bolt) Prefix(k []byte) (res [][]byte) {
+	return nil
+}
+
+func (b *Bolt) Suffix(k []byte) (res [][]byte) {
+	return nil
+}
+
+func (b *Bolt) Scan() (res [][]byte) {
+	return nil
+}
+
 func (b *Bolt) Close() error {
 	b.engine.Close()
 	return nil
