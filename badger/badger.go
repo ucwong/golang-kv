@@ -2,6 +2,7 @@ package badger
 
 import (
 	badger "github.com/dgraph-io/badger/v3"
+	"strings"
 )
 
 type Badger struct {
@@ -58,7 +59,21 @@ func (b *Badger) Prefix(k []byte) (res [][]byte) {
 }
 
 func (b *Badger) Suffix(k []byte) (res [][]byte) {
-	return nil
+	b.engine.View(func(txn *badger.Txn) error {
+		it := txn.NewIterator(badger.DefaultIteratorOptions)
+		defer it.Close()
+		for it.Rewind(); it.Valid(); it.Next() {
+			item := it.Item()
+			if strings.HasSuffix(string(item.Key()), string(k)) {
+				item.Value(func(v []byte) error {
+					res = append(res, v)
+					return nil
+				})
+			}
+		}
+		return nil
+	})
+	return
 }
 
 func (b *Badger) Scan() (res [][]byte) {

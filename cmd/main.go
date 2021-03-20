@@ -21,7 +21,7 @@ func main() {
 
 	db.Set([]byte("xxy"), []byte("xxy"))
 	db.Set([]byte("xxxy"), []byte("xxxy"))
-	res := db.Prefix([]byte("x"))
+	res := db.Suffix([]byte("xy"))
 	for _, i := range res {
 		fmt.Printf("...%v...%s\n", len(res), string(i))
 	}
