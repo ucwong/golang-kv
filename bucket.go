@@ -12,3 +12,7 @@ func Badger() Bucket {
 func Bolt() Bucket {
 	return bolt.New()
 }
+
+func New() Bucket {
+	return badger.New()
+}

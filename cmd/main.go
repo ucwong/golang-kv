@@ -14,7 +14,7 @@ func main() {
 	db.Del([]byte("x"))
 	db.Close()
 
-	db = bucket.Badger()
+	db = bucket.New()
 	db.Set([]byte("x"), []byte("y"))
 	v = db.Get([]byte("x"))
 	fmt.Println("..." + string(v))
