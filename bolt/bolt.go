@@ -30,13 +30,12 @@ func (b *Bolt) Get(k []byte) (v []byte) {
 }
 
 func (b *Bolt) Set(k, v []byte) (err error) {
-	b.engine.Update(func(tx *bolt.Tx) error {
-		buk, err := tx.CreateBucketIfNotExists([]byte("bolt"))
-		if err != nil {
-			return err
+	err = b.engine.Update(func(tx *bolt.Tx) error {
+		buk, e := tx.CreateBucketIfNotExists([]byte("bolt"))
+		if e != nil {
+			return e
 		}
-		err = buk.Put(k, v)
-		return err
+		return buk.Put(k, v)
 	})
 	return
 }
