@@ -41,8 +41,16 @@ func (b *Bolt) Set(k, v []byte) (err error) {
 	return
 }
 
-func (b *Bolt) Del(k []byte) error {
-	return nil
+func (b *Bolt) Del(k []byte) (err error) {
+	err = b.engine.Update(func(tx *bolt.Tx) error {
+		b, err := tx.CreateBucketIfNotExists([]byte("bolt"))
+		if err != nil {
+			return err
+		}
+		return b.Delete(k)
+	})
+
+	return
 }
 
 func (b *Bolt) Prefix(prefix []byte) (res [][]byte) {

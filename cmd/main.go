@@ -16,6 +16,7 @@ func main() {
 	for _, i := range res {
 		fmt.Printf("...%v...%s\n", len(res), string(i))
 	}
+	db.Del([]byte("xxxy"))
 	res = db.Suffix([]byte("xxy"))
 	for _, i := range res {
 		fmt.Printf("...%v...%s\n", len(res), string(i))
