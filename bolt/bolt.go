@@ -1,6 +1,7 @@
 package bolt
 
 import (
+	"bytes"
 	bolt "go.etcd.io/bbolt"
 )
 
@@ -44,16 +45,43 @@ func (b *Bolt) Del(k []byte) error {
 	return nil
 }
 
-func (b *Bolt) Prefix(k []byte) (res [][]byte) {
-	return nil
+func (b *Bolt) Prefix(prefix []byte) (res [][]byte) {
+	b.engine.View(func(tx *bolt.Tx) error {
+		c := tx.Bucket([]byte("bolt")).Cursor()
+		for k, v := c.Seek(prefix); k != nil && bytes.HasPrefix(k, prefix); k, v = c.Next() {
+			res = append(res, v)
+		}
+
+		return nil
+	})
+
+	return
 }
 
-func (b *Bolt) Suffix(k []byte) (res [][]byte) {
-	return nil
+func (b *Bolt) Suffix(suffix []byte) (res [][]byte) {
+	b.engine.View(func(tx *bolt.Tx) error {
+		c := tx.Bucket([]byte("bolt")).Cursor()
+		for k, v := c.Seek(suffix); k != nil && bytes.HasSuffix(k, suffix); k, v = c.Next() {
+			res = append(res, v)
+		}
+
+		return nil
+	})
+
+	return
 }
 
 func (b *Bolt) Scan() (res [][]byte) {
-	return nil
+	b.engine.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("bolt"))
+		b.ForEach(func(k, v []byte) error {
+			res = append(res, v)
+			return nil
+		})
+		return nil
+	})
+
+	return
 }
 
 func (b *Bolt) Close() error {
