@@ -9,10 +9,10 @@ import (
 
 func main() {
 	bolt()
-	badger()
+	//badger()
 }
 
-var batch int = 10
+var batch int = 100
 
 func bolt() {
 	var db bucket.Bucket
