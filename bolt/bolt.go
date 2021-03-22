@@ -80,8 +80,10 @@ func (b *Bolt) Suffix(suffix []byte) (res [][]byte) {
 		}
 
 		c := buk.Cursor()
-		for k, v := c.Seek(suffix); k != nil && bytes.HasSuffix(k, suffix); k, v = c.Next() {
-			res = append(res, v)
+		for k, v := c.First(); k != nil; k, v = c.Next() {
+			if bytes.HasSuffix(k, suffix) {
+				res = append(res, v)
+			}
 		}
 
 		return nil
