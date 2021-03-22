@@ -42,9 +42,16 @@ func main() {
 
 	db.Set([]byte("ttlxxxyx"), []byte("ttl reset"))
 
+	m1 := db.Get([]byte("ttlxxxyx1"))
+	fmt.Printf("...........%s\n", string(m1))
+
+	db.Del([]byte("ttlxxxyx1"))
+
 	time.Sleep(3000 * time.Millisecond)
 	m := db.Get([]byte("ttlxxxyx"))
 	fmt.Printf("...........%s\n", string(m))
+
+	db.Del([]byte("ttlxxxyx1"))
 
 	m2 := db.Get([]byte("ttlxxxyx1"))
 	fmt.Printf("...........%s\n", string(m2))
