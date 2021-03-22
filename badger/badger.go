@@ -38,8 +38,11 @@ func (b *Badger) Set(k, v []byte) (err error) {
 	return
 }
 
-func (b *Badger) Del(k []byte) error {
-	return nil
+func (b *Badger) Del(k []byte) (err error) {
+	err = b.engine.Update(func(txn *badger.Txn) error {
+		return txn.Delete(k)
+	})
+	return
 }
 
 func (b *Badger) Prefix(k []byte) (res [][]byte) {
