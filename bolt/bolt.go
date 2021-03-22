@@ -2,14 +2,17 @@ package bolt
 
 import (
 	"bytes"
-	"errors"
+	//"errors"
+	"fmt"
 	"time"
 
+	"github.com/imkira/go-ttlmap"
 	bolt "go.etcd.io/bbolt"
 )
 
 type Bolt struct {
-	engine *bolt.DB
+	engine  *bolt.DB
+	ttl_map *ttlmap.Map
 }
 
 const GLOBAL = "bolt"
@@ -21,6 +24,19 @@ func New() *Bolt {
 	} else {
 		panic("bolt open failed")
 	}
+
+	options := &ttlmap.Options{
+		InitialCapacity: 1024,
+		OnWillExpire: func(key string, item ttlmap.Item) {
+			fmt.Printf("expired: [%s=%v]\n", key, item.Value())
+			//b.Del([]byte(key))
+		},
+		OnWillEvict: func(key string, item ttlmap.Item) {
+			fmt.Printf("evicted: [%s=%v]\n", key, item.Value())
+			b.Del([]byte(key))
+		},
+	}
+	b.ttl_map = ttlmap.New(options)
 	return b
 }
 
@@ -113,9 +129,12 @@ func (b *Bolt) Scan() (res [][]byte) {
 
 func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
 	//TODO bolt has not a key ttl method
-	return errors.New("Not support for bolt")
+	//return errors.New("Not support for bolt")
+	b.ttl_map.Set(string(k), ttlmap.NewItem(string(v), ttlmap.WithTTL(expire)), nil)
+	return b.Set(k, v)
 }
 
 func (b *Bolt) Close() error {
+	go b.ttl_map.Drain()
 	return b.engine.Close()
 }
