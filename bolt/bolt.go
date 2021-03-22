@@ -41,6 +41,10 @@ func New() *Bolt {
 }
 
 func (b *Bolt) Get(k []byte) (v []byte) {
+	item, err := b.ttl_map.Get(string(k))
+	if err == nil {
+		return []byte(item.Value().(string))
+	}
 	b.engine.View(func(tx *bolt.Tx) error {
 		buk := tx.Bucket([]byte(GLOBAL))
 		if buk != nil {
@@ -52,6 +56,7 @@ func (b *Bolt) Get(k []byte) (v []byte) {
 }
 
 func (b *Bolt) Set(k, v []byte) (err error) {
+	b.ttl_map.Delete(string(k))
 	err = b.engine.Update(func(tx *bolt.Tx) error {
 		buk, e := tx.CreateBucketIfNotExists([]byte(GLOBAL))
 		if e != nil {
@@ -128,9 +133,7 @@ func (b *Bolt) Scan() (res [][]byte) {
 }
 
 func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
-	//TODO bolt has not a key ttl method
-	//return errors.New("Not support for bolt")
-	b.ttl_map.Set(string(k), ttlmap.NewItem(string(v), ttlmap.WithTTL(expire)), nil)
+	go b.ttl_map.Set(string(k), ttlmap.NewItem(string(v), ttlmap.WithTTL(expire)), nil)
 	return b.Set(k, v)
 }
 
