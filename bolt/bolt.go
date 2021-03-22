@@ -9,6 +9,8 @@ type Bolt struct {
 	engine *bolt.DB
 }
 
+const GLOBAL = "bolt"
+
 func New() *Bolt {
 	b := &Bolt{}
 	if db, err := bolt.Open(".bolt", 0600, nil); err == nil {
@@ -21,7 +23,7 @@ func New() *Bolt {
 
 func (b *Bolt) Get(k []byte) (v []byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		buk := tx.Bucket([]byte("bolt"))
+		buk := tx.Bucket([]byte(GLOBAL))
 		if buk != nil {
 			v = buk.Get(k)
 		}
@@ -32,7 +34,7 @@ func (b *Bolt) Get(k []byte) (v []byte) {
 
 func (b *Bolt) Set(k, v []byte) (err error) {
 	err = b.engine.Update(func(tx *bolt.Tx) error {
-		buk, e := tx.CreateBucketIfNotExists([]byte("bolt"))
+		buk, e := tx.CreateBucketIfNotExists([]byte(GLOBAL))
 		if e != nil {
 			return e
 		}
@@ -43,7 +45,7 @@ func (b *Bolt) Set(k, v []byte) (err error) {
 
 func (b *Bolt) Del(k []byte) (err error) {
 	err = b.engine.Update(func(tx *bolt.Tx) error {
-		b, err := tx.CreateBucketIfNotExists([]byte("bolt"))
+		b, err := tx.CreateBucketIfNotExists([]byte(GLOBAL))
 		if err != nil {
 			return err
 		}
@@ -55,7 +57,7 @@ func (b *Bolt) Del(k []byte) (err error) {
 
 func (b *Bolt) Prefix(prefix []byte) (res [][]byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		c := tx.Bucket([]byte("bolt")).Cursor()
+		c := tx.Bucket([]byte(GLOBAL)).Cursor()
 		for k, v := c.Seek(prefix); k != nil && bytes.HasPrefix(k, prefix); k, v = c.Next() {
 			res = append(res, v)
 		}
@@ -68,7 +70,7 @@ func (b *Bolt) Prefix(prefix []byte) (res [][]byte) {
 
 func (b *Bolt) Suffix(suffix []byte) (res [][]byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		c := tx.Bucket([]byte("bolt")).Cursor()
+		c := tx.Bucket([]byte(GLOBAL)).Cursor()
 		for k, v := c.Seek(suffix); k != nil && bytes.HasSuffix(k, suffix); k, v = c.Next() {
 			res = append(res, v)
 		}
@@ -81,7 +83,7 @@ func (b *Bolt) Suffix(suffix []byte) (res [][]byte) {
 
 func (b *Bolt) Scan() (res [][]byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		b := tx.Bucket([]byte("bolt"))
+		b := tx.Bucket([]byte(GLOBAL))
 		b.ForEach(func(k, v []byte) error {
 			res = append(res, v)
 			return nil
