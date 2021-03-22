@@ -10,13 +10,18 @@ func main() {
 	var db bucket.Bucket
 
 	db = bucket.Bolt()
+	res := db.Scan()
+	for _, i := range res {
+		fmt.Printf("scan...%v...%s\n", len(res), string(i))
+	}
 	db.Set([]byte("x"), []byte("y"))
 	db.Set([]byte("xxy"), []byte("xxy"))
 	db.Set([]byte("xxxyx"), []byte("xxxyx"))
 	db.SetTTL([]byte("ttlxxxyx"), []byte("ttlxxxyx"), 1000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx2"), []byte("ttlxxxyx2"), 5000*time.Millisecond)
-	res := db.Prefix([]byte("xx"))
+	db.SetTTL([]byte("ttlxxxyx3"), []byte("ttlxxxyx3"), 5000*time.Millisecond)
+	res = db.Prefix([]byte("xx"))
 	for _, i := range res {
 		fmt.Printf("prefix...%v...%s\n", len(res), string(i))
 	}

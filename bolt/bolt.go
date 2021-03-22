@@ -29,7 +29,6 @@ func New() *Bolt {
 		InitialCapacity: 1024,
 		OnWillExpire: func(key string, item ttlmap.Item) {
 			fmt.Printf("expired: [%s=%v]\n", key, item.Value())
-			//b.Del([]byte(key))
 		},
 		OnWillEvict: func(key string, item ttlmap.Item) {
 			fmt.Printf("evicted: [%s=%v]\n", key, item.Value())
@@ -57,7 +56,10 @@ func (b *Bolt) Get(k []byte) (v []byte) {
 }
 
 func (b *Bolt) Set(k, v []byte) (err error) {
-	b.ttl_map.Delete(string(k))
+	if _, err = b.ttl_map.Get(string(k)); err == nil {
+		go b.ttl_map.Delete(string(k))
+	}
+
 	err = b.engine.Update(func(tx *bolt.Tx) error {
 		buk, e := tx.CreateBucketIfNotExists([]byte(GLOBAL))
 		if e != nil {
@@ -135,8 +137,16 @@ func (b *Bolt) Scan() (res [][]byte) {
 }
 
 func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
-	go b.ttl_map.Set(string(k), ttlmap.NewItem(string(v), ttlmap.WithTTL(expire)), nil)
-	return b.Set(k, v)
+	b.ttl_map.Set(string(k), ttlmap.NewItem(string(v), ttlmap.WithTTL(expire)), nil)
+	err = b.engine.Update(func(tx *bolt.Tx) error {
+		buk, e := tx.CreateBucketIfNotExists([]byte(GLOBAL))
+		if e != nil {
+			return e
+		}
+		return buk.Put(k, v)
+	})
+
+	return
 }
 
 func (b *Bolt) Close() error {
