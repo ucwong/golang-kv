@@ -117,6 +117,5 @@ func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
 }
 
 func (b *Bolt) Close() error {
-	b.engine.Close()
-	return nil
+	return b.engine.Close()
 }

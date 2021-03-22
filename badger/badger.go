@@ -111,6 +111,5 @@ func (b *Badger) SetTTL(k, v []byte, expire time.Duration) (err error) {
 }
 
 func (b *Badger) Close() error {
-	b.engine.Close()
-	return nil
+	return b.engine.Close()
 }
