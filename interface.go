@@ -1,5 +1,9 @@
 package bucket
 
+import (
+	"time"
+)
+
 type Bucket interface {
 	Get(k []byte) []byte
 	Set(k, v []byte) error
@@ -7,5 +11,6 @@ type Bucket interface {
 	Prefix(k []byte) [][]byte
 	Suffix(k []byte) [][]byte
 	Scan() [][]byte
+	SetTTL(k, v []byte, expire time.Duration) error
 	Close() error
 }
