@@ -2,8 +2,9 @@ package badger
 
 import (
 	"bytes"
-	badger "github.com/dgraph-io/badger/v3"
 	"time"
+
+	badger "github.com/dgraph-io/badger/v3"
 )
 
 type Badger struct {

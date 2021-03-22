@@ -2,8 +2,9 @@ package bolt
 
 import (
 	"bytes"
-	bolt "go.etcd.io/bbolt"
 	"time"
+
+	bolt "go.etcd.io/bbolt"
 )
 
 type Bolt struct {
