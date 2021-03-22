@@ -2,6 +2,7 @@ package bolt
 
 import (
 	"bytes"
+	"errors"
 	"time"
 
 	bolt "go.etcd.io/bbolt"
@@ -111,7 +112,8 @@ func (b *Bolt) Scan() (res [][]byte) {
 }
 
 func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
-	return nil
+	//TODO bolt has not a key ttl method
+	return errors.New("Not support for bolt")
 }
 
 func (b *Bolt) Close() error {
