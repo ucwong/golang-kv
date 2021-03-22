@@ -137,7 +137,7 @@ func (b *Bolt) Scan() (res [][]byte) {
 func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
 	err = b.ttl_map.Set(string(k), ttlmap.NewItem(string(v), ttlmap.WithTTL(expire)), nil)
 	if err != nil {
-		return err
+		return
 	}
 	err = b.engine.Update(func(tx *bolt.Tx) error {
 		buk, e := tx.CreateBucketIfNotExists([]byte(GLOBAL))
