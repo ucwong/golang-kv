@@ -12,8 +12,9 @@ func main() {
 	badger()
 }
 
+var batch int = 10
+
 func bolt() {
-	var batch int = 100
 	var db bucket.Bucket
 
 	db = bucket.Bolt()
@@ -28,6 +29,9 @@ func bolt() {
 	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx2"), []byte("ttlxxxyx2"), 5000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx3"), []byte("ttlxxxyx3"), 5000*time.Millisecond)
+	for i := 0; i < batch; i++ {
+		db.SetTTL([]byte("ttlxxxyx3"+strconv.Itoa(i)), []byte("ttlxxxyx3"+strconv.Itoa(i)), 2000*time.Millisecond)
+	}
 	for i := 0; i < batch; i++ {
 		db.SetTTL([]byte("ttlxxxyx4"+strconv.Itoa(i)), []byte("ttlxxxyx4"+strconv.Itoa(i)), 5000*time.Millisecond)
 	}
@@ -81,7 +85,6 @@ func bolt() {
 }
 
 func badger() {
-	var batch int = 100
 	var db bucket.Bucket
 
 	db = bucket.Badger()
@@ -97,7 +100,10 @@ func badger() {
 	db.SetTTL([]byte("ttlxxxyx2"), []byte("ttlxxxyx2"), 5000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx3"), []byte("ttlxxxyx3"), 5000*time.Millisecond)
 	for i := 0; i < batch; i++ {
-		db.SetTTL([]byte("ttlxxxyx4"+strconv.Itoa(i)), []byte("ttlxxxyx4"+strconv.Itoa(i)), 5000*time.Millisecond)
+		db.SetTTL([]byte("ttlxxxyx3"+strconv.Itoa(i)), []byte("ttlxxxyx3"+strconv.Itoa(i)), 2000*time.Millisecond)
+	}
+	for i := 0; i < batch; i++ {
+		db.SetTTL([]byte("ttlxxxyx4"+strconv.Itoa(i)), []byte("ttlxxxyx4"+strconv.Itoa(i)), 2000*time.Millisecond)
 	}
 	res = db.Prefix([]byte("xx"))
 	for _, i := range res {
