@@ -2,7 +2,6 @@ package bolt
 
 import (
 	"bytes"
-	//"errors"
 	"fmt"
 	"time"
 
@@ -70,6 +69,7 @@ func (b *Bolt) Set(k, v []byte) (err error) {
 
 func (b *Bolt) Del(k []byte) (err error) {
 	go b.ttl_map.Delete(string(k))
+
 	err = b.engine.Update(func(tx *bolt.Tx) error {
 		buk := tx.Bucket([]byte(GLOBAL))
 		if buk == nil {
