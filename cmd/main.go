@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	"github.com/ucwong/bucket"
+	"strconv"
 	"time"
 )
 
 func main() {
+	var batch int = 10
 	var db bucket.Bucket
 
 	db = bucket.Bolt()
@@ -21,7 +23,9 @@ func main() {
 	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx2"), []byte("ttlxxxyx2"), 5000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx3"), []byte("ttlxxxyx3"), 5000*time.Millisecond)
-	db.SetTTL([]byte("ttlxxxyx4"), []byte("ttlxxxyx4"), 5000*time.Millisecond)
+	for i := 0; i < batch; i++ {
+		db.SetTTL([]byte("ttlxxxyx4"+strconv.Itoa(i)), []byte("ttlxxxyx4"+strconv.Itoa(i)), 5000*time.Millisecond)
+	}
 	res = db.Prefix([]byte("xx"))
 	for _, i := range res {
 		fmt.Printf("prefix...%v...%s\n", len(res), string(i))
@@ -47,10 +51,13 @@ func main() {
 	f1 := db.Get([]byte("xxy"))
 	fmt.Printf("...........%s\n", string(f1))
 
-	db.Set([]byte("ttlxxxyx"), []byte("ttl reset -> ttlxxxyx"))
+	for i := 0; i < batch/2; i++ {
+		db.Set([]byte("ttlxxxyx4"+strconv.Itoa(i)), []byte("reset -> ttlxxxyx4"+strconv.Itoa(i)))
+	}
 
-	m1 := db.Get([]byte("ttlxxxyx1"))
-	fmt.Printf("...........%s\n", string(m1))
+	for i := 0; i < batch; i++ {
+		fmt.Printf("...........%s\n", string(db.Get([]byte("ttlxxxyx4"+strconv.Itoa(i)))))
+	}
 
 	db.Del([]byte("ttlxxxyx1"))
 
