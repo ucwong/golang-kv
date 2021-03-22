@@ -45,11 +45,11 @@ func (b *Bolt) Set(k, v []byte) (err error) {
 
 func (b *Bolt) Del(k []byte) (err error) {
 	err = b.engine.Update(func(tx *bolt.Tx) error {
-		b, err := tx.CreateBucketIfNotExists([]byte(GLOBAL))
-		if err != nil {
-			return err
+		buk := tx.Bucket([]byte(GLOBAL))
+		if buk == nil {
+			return nil
 		}
-		return b.Delete(k)
+		return buk.Delete(k)
 	})
 
 	return
@@ -57,7 +57,11 @@ func (b *Bolt) Del(k []byte) (err error) {
 
 func (b *Bolt) Prefix(prefix []byte) (res [][]byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		c := tx.Bucket([]byte(GLOBAL)).Cursor()
+		buk := tx.Bucket([]byte(GLOBAL))
+		if buk == nil {
+			return nil
+		}
+		c := buk.Cursor()
 		for k, v := c.Seek(prefix); k != nil && bytes.HasPrefix(k, prefix); k, v = c.Next() {
 			res = append(res, v)
 		}
@@ -70,7 +74,12 @@ func (b *Bolt) Prefix(prefix []byte) (res [][]byte) {
 
 func (b *Bolt) Suffix(suffix []byte) (res [][]byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		c := tx.Bucket([]byte(GLOBAL)).Cursor()
+		buk := tx.Bucket([]byte(GLOBAL))
+		if buk == nil {
+			return nil
+		}
+
+		c := buk.Cursor()
 		for k, v := c.Seek(suffix); k != nil && bytes.HasSuffix(k, suffix); k, v = c.Next() {
 			res = append(res, v)
 		}
@@ -83,8 +92,11 @@ func (b *Bolt) Suffix(suffix []byte) (res [][]byte) {
 
 func (b *Bolt) Scan() (res [][]byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		b := tx.Bucket([]byte(GLOBAL))
-		b.ForEach(func(k, v []byte) error {
+		buk := tx.Bucket([]byte(GLOBAL))
+		if buk == nil {
+			return nil
+		}
+		buk.ForEach(func(k, v []byte) error {
 			res = append(res, v)
 			return nil
 		})
