@@ -140,6 +140,6 @@ func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
 }
 
 func (b *Bolt) Close() error {
-	go b.ttl_map.Drain()
+	b.ttl_map.Drain()
 	return b.engine.Close()
 }
