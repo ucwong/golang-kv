@@ -21,6 +21,7 @@ func main() {
 	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx2"), []byte("ttlxxxyx2"), 5000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx3"), []byte("ttlxxxyx3"), 5000*time.Millisecond)
+	db.SetTTL([]byte("ttlxxxyx4"), []byte("ttlxxxyx4"), 5000*time.Millisecond)
 	res = db.Prefix([]byte("xx"))
 	for _, i := range res {
 		fmt.Printf("prefix...%v...%s\n", len(res), string(i))
@@ -46,7 +47,7 @@ func main() {
 	f1 := db.Get([]byte("xxy"))
 	fmt.Printf("...........%s\n", string(f1))
 
-	db.Set([]byte("ttlxxxyx"), []byte("ttl reset"))
+	db.Set([]byte("ttlxxxyx"), []byte("ttl reset -> ttlxxxyx"))
 
 	m1 := db.Get([]byte("ttlxxxyx1"))
 	fmt.Printf("...........%s\n", string(m1))
