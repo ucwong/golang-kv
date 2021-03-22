@@ -77,7 +77,24 @@ func (b *Badger) Suffix(k []byte) (res [][]byte) {
 }
 
 func (b *Badger) Scan() (res [][]byte) {
-	return nil
+	b.engine.View(func(txn *badger.Txn) error {
+		opts := badger.DefaultIteratorOptions
+		opts.PrefetchSize = 10
+		it := txn.NewIterator(opts)
+		defer it.Close()
+		for it.Rewind(); it.Valid(); it.Next() {
+			item := it.Item()
+			err := item.Value(func(v []byte) error {
+				res = append(res, v)
+				return nil
+			})
+			if err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	return
 }
 
 func (b *Badger) Close() error {

@@ -25,6 +25,10 @@ func main() {
 	for _, i := range res {
 		fmt.Printf("...%v...%s\n", len(res), string(i))
 	}
+	res = db.Scan()
+	for _, i := range res {
+		fmt.Printf("...%v...%s\n", len(res), string(i))
+	}
 	db.Del([]byte("xx"))
 	db.Close()
 }
