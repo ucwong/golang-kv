@@ -3,6 +3,7 @@ package bolt
 import (
 	"bytes"
 	bolt "go.etcd.io/bbolt"
+	"time"
 )
 
 type Bolt struct {
@@ -106,6 +107,10 @@ func (b *Bolt) Scan() (res [][]byte) {
 	})
 
 	return
+}
+
+func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
+	return nil
 }
 
 func (b *Bolt) Close() error {

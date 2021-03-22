@@ -3,6 +3,7 @@ package badger
 import (
 	"bytes"
 	badger "github.com/dgraph-io/badger/v3"
+	"time"
 )
 
 type Badger struct {
@@ -96,6 +97,14 @@ func (b *Badger) Scan() (res [][]byte) {
 			}
 		}
 		return nil
+	})
+	return
+}
+
+func (b *Badger) SetTTL(k, v []byte, expire time.Duration) (err error) {
+	err = b.engine.Update(func(txn *badger.Txn) error {
+		e := badger.NewEntry(k, v).WithTTL(expire)
+		return txn.SetEntry(e)
 	})
 	return
 }
