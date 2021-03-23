@@ -21,6 +21,8 @@ vs := badger.Prefix([]byte("x"))
 
 bolt := bucket.Bolt()
 
+bolt.setTTL([]byte("k"), []byte("v"), time.Second)
+
 ...
 
 ```
