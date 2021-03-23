@@ -12,7 +12,7 @@ func main() {
 	//badger()
 }
 
-var batch int = 100
+var batch int = 10
 
 func bolt() {
 	var db bucket.Bucket
@@ -20,7 +20,7 @@ func bolt() {
 	db = bucket.Bolt()
 	res := db.Scan()
 	for _, i := range res {
-		fmt.Printf("scan...%v...%s\n", len(res), string(i))
+		fmt.Printf("scan...%v...%v\n", len(res), len(i))
 	}
 	db.Set([]byte("x"), []byte("y"))
 	db.Set([]byte("xxy"), []byte("xxy"))
@@ -45,7 +45,7 @@ func bolt() {
 	}
 	res = db.Scan()
 	for _, i := range res {
-		fmt.Printf("scan...%v...%s\n", len(res), string(i))
+		fmt.Printf("scan...%v...%v\n", len(res), len(i))
 	}
 	//db.Del([]byte("xxy"))
 	//res = db.Scan()
@@ -90,7 +90,7 @@ func badger() {
 	db = bucket.Badger()
 	res := db.Scan()
 	for _, i := range res {
-		fmt.Printf("scan...%v...%s\n", len(res), string(i))
+		fmt.Printf("scan...%v...%v\n", len(res), len(i))
 	}
 	db.Set([]byte("x"), []byte("y"))
 	db.Set([]byte("xxy"), []byte("xxy"))
@@ -115,7 +115,7 @@ func badger() {
 	}
 	res = db.Scan()
 	for _, i := range res {
-		fmt.Printf("scan...%v...%s\n", len(res), string(i))
+		fmt.Printf("scan...%v...%v\n", len(res), len(i))
 	}
 	//db.Del([]byte("xxy"))
 	//res = db.Scan()

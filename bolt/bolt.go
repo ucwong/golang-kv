@@ -28,6 +28,7 @@ func New() *Bolt {
 		InitialCapacity: 1024 * 1024,
 		OnWillExpire: func(key string, item ttlmap.Item) {
 			fmt.Printf("expired: [%s=%v]\n", key, item.Value())
+			//b.Del([]byte(key))
 		},
 		OnWillEvict: func(key string, item ttlmap.Item) {
 			fmt.Printf("evicted: [%s=%v]\n", key, item.Value())
