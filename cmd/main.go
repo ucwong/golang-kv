@@ -8,9 +8,9 @@ import (
 )
 
 func main() {
-	//bolt()
+	bolt()
 	//badger()
-	leveldb()
+	//leveldb()
 }
 
 var batch int = 2
@@ -91,6 +91,8 @@ func bolt() {
 	var db bucket.Bucket
 
 	db = bucket.Bolt()
+	db.Set([]byte("a"), []byte("a"))
+	db.Set([]byte("b"), []byte("b"))
 	db.Set([]byte("x"), []byte("x"))
 	db.Set([]byte("xxy"), []byte("xxy"))
 	db.Set([]byte("xxxyx"), []byte("xxxyx"))
