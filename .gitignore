@@ -17,3 +17,5 @@
 .badger
 *.bolt*
 .bolt
+*.leveldb*
+.leveldb

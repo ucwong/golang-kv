@@ -7,6 +7,8 @@ import (
 
 	"github.com/imkira/go-ttlmap"
 	bolt "go.etcd.io/bbolt"
+
+	"github.com/ucwong/bucket/common"
 )
 
 type Bolt struct {
@@ -90,7 +92,7 @@ func (b *Bolt) Prefix(prefix []byte) (res [][]byte) {
 		}
 		c := buk.Cursor()
 		for k, v := c.Seek(prefix); k != nil && bytes.HasPrefix(k, prefix); k, v = c.Next() {
-			res = append(res, v)
+			res = append(res, common.SafeCopy(nil, v))
 		}
 
 		return nil
@@ -109,7 +111,7 @@ func (b *Bolt) Suffix(suffix []byte) (res [][]byte) {
 		c := buk.Cursor()
 		for k, v := c.First(); k != nil; k, v = c.Next() {
 			if bytes.HasSuffix(k, suffix) {
-				res = append(res, v)
+				res = append(res, common.SafeCopy(nil, v))
 			}
 		}
 
@@ -126,7 +128,7 @@ func (b *Bolt) Scan() (res [][]byte) {
 			return nil
 		}
 		buk.ForEach(func(k, v []byte) error {
-			res = append(res, v)
+			res = append(res, common.SafeCopy(nil, v))
 			return nil
 		})
 		return nil

@@ -3,6 +3,7 @@ package bucket
 import (
 	"github.com/ucwong/bucket/badger"
 	"github.com/ucwong/bucket/bolt"
+	"github.com/ucwong/bucket/leveldb"
 )
 
 func Badger() Bucket {
@@ -11,6 +12,10 @@ func Badger() Bucket {
 
 func Bolt() Bucket {
 	return bolt.New()
+}
+
+func LevelDB() Bucket {
+	return leveldb.New()
 }
 
 func New() Bucket {
