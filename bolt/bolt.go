@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/imkira/go-ttlmap"
-	bolt "go.etcd.io/bbolt"
-
 	"github.com/ucwong/bucket/common"
+
+	bolt "go.etcd.io/bbolt"
 )
 
 type Bolt struct {
