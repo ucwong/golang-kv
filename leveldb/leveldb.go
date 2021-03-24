@@ -63,6 +63,15 @@ func (ldb *LevelDB) Suffix(k []byte) (res [][]byte) {
 	return
 }
 
+func (ldb *LevelDB) Range(start, limit []byte) (res [][]byte) {
+	iter := ldb.engine.NewIterator(&util.Range{Start: start, Limit: limit}, nil)
+	defer iter.Release()
+	for iter.Next() {
+		res = append(res, common.SafeCopy(nil, iter.Value()))
+	}
+	return
+}
+
 func (ldb *LevelDB) Scan() (res [][]byte) {
 	iter := ldb.engine.NewIterator(nil, nil)
 	defer iter.Release()
