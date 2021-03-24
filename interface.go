@@ -11,6 +11,7 @@ type Bucket interface {
 	Prefix(k []byte) [][]byte
 	Suffix(k []byte) [][]byte
 	Scan() [][]byte
+	Range(start, limit []byte) [][]byte
 	SetTTL(k, v []byte, expire time.Duration) error
 	Close() error
 }
