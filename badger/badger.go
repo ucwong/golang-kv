@@ -53,10 +53,9 @@ func (b *Badger) Prefix(k []byte) (res [][]byte) {
 		defer it.Close()
 		for it.Seek(k); it.ValidForPrefix(k); it.Next() {
 			item := it.Item()
-			item.Value(func(v []byte) error {
-				res = append(res, v)
-				return nil
-			})
+			if val, err := item.ValueCopy(nil); err == nil {
+				res = append(res, val)
+			}
 		}
 		return nil
 	})
@@ -70,10 +69,9 @@ func (b *Badger) Suffix(k []byte) (res [][]byte) {
 		for it.Rewind(); it.Valid(); it.Next() {
 			item := it.Item()
 			if bytes.HasSuffix(item.Key(), k) {
-				item.Value(func(v []byte) error {
-					res = append(res, v)
-					return nil
-				})
+				if val, err := item.ValueCopy(nil); err == nil {
+					res = append(res, val)
+				}
 			}
 		}
 		return nil
@@ -89,12 +87,8 @@ func (b *Badger) Scan() (res [][]byte) {
 		defer it.Close()
 		for it.Rewind(); it.Valid(); it.Next() {
 			item := it.Item()
-			err := item.Value(func(v []byte) error {
-				res = append(res, v)
-				return nil
-			})
-			if err != nil {
-				return err
+			if val, err := item.ValueCopy(nil); err == nil {
+				res = append(res, val)
 			}
 		}
 		return nil
