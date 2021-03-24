@@ -153,6 +153,10 @@ func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
 	return
 }
 
+func (b *Bolt) Range(start, limit []byte) (res [][]byte) {
+	return
+}
+
 func (b *Bolt) Close() error {
 	b.ttl_map.Drain()
 	return b.engine.Close()

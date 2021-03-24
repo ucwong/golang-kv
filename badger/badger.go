@@ -104,6 +104,10 @@ func (b *Badger) SetTTL(k, v []byte, expire time.Duration) (err error) {
 	return
 }
 
+func (b *Badger) Range(start, limit []byte) (res [][]byte) {
+	return
+}
+
 func (b *Badger) Close() error {
 	return b.engine.Close()
 }
