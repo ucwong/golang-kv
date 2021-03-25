@@ -2,6 +2,7 @@ package badger
 
 import (
 	"bytes"
+	//"fmt"
 	"time"
 
 	badger "github.com/dgraph-io/badger/v3"
@@ -105,6 +106,26 @@ func (b *Badger) SetTTL(k, v []byte, expire time.Duration) (err error) {
 }
 
 func (b *Badger) Range(start, limit []byte) (res [][]byte) {
+	b.engine.View(func(txn *badger.Txn) error {
+		opts := badger.DefaultIteratorOptions
+		opts.PrefetchSize = 10
+		it := txn.NewIterator(opts)
+		defer it.Close()
+		for it.Rewind(); it.Valid(); it.Next() {
+			item := it.Item()
+			//fmt.Printf("%s, %s, %s, %v, %v\n", string(start), string(limit), string(item.Key()), bytes.Compare(start, item.Key()), bytes.Compare(limit, item.Key()))
+			if bytes.Compare(start, item.Key()) <= 0 {
+				if bytes.Compare(limit, item.Key()) > 0 {
+					if val, err := item.ValueCopy(nil); err == nil {
+						res = append(res, val)
+					}
+				} else {
+					break
+				}
+			}
+		}
+		return nil
+	})
 	return
 }
 
