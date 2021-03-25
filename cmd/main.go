@@ -29,6 +29,7 @@ func leveldb() {
 	db.Set([]byte("xxy"), []byte("xxy"))
 	db.Set([]byte("xxxyx"), []byte("xxxyx"))
 	db.Set([]byte("xxx"), []byte("xxx"))
+	db.Set([]byte("xyy"), []byte("xyy"))
 
 	db.SetTTL([]byte("ttlxxxyx"), []byte("ttlxxxyx"), 1000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
@@ -44,7 +45,7 @@ func leveldb() {
 	for _, i := range res {
 		fmt.Printf("scan...%v...%s\n", len(res), string(i))
 	}
-	res = db.Range([]byte("xxx"), []byte("xxy"))
+	res = db.Range([]byte("xxx"), []byte("xxz"))
 	for _, i := range res {
 		fmt.Printf("range...%v...%s\n", len(res), string(i))
 	}
@@ -102,6 +103,7 @@ func bolt() {
 	db.Set([]byte("xxy"), []byte("xxy"))
 	db.Set([]byte("xxx"), []byte("xxx"))
 	db.Set([]byte("xxxyx"), []byte("xxxyx"))
+	db.Set([]byte("xyy"), []byte("xyy"))
 	db.SetTTL([]byte("ttlxxxyx"), []byte("ttlxxxyx"), 1000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx2"), []byte("ttlxxxyx2"), 5000*time.Millisecond)
@@ -116,7 +118,7 @@ func bolt() {
 	for _, i := range res {
 		fmt.Printf("scan...%v...%s\n", len(res), string(i))
 	}
-	res = db.Range([]byte("xxx"), []byte("xxy"))
+	res = db.Range([]byte("xxx"), []byte("xxz"))
 	for _, i := range res {
 		fmt.Printf("range...%v...%s\n", len(res), string(i))
 	}
@@ -178,6 +180,7 @@ func badger() {
 	db.Set([]byte("xxy"), []byte("xxy"))
 	db.Set([]byte("xxxyx"), []byte("xxxyx"))
 	db.Set([]byte("xxx"), []byte("xxx"))
+	db.Set([]byte("xyy"), []byte("xyy"))
 	db.SetTTL([]byte("ttlxxxyx"), []byte("ttlxxxyx"), 1000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx2"), []byte("ttlxxxyx2"), 5000*time.Millisecond)
@@ -192,7 +195,7 @@ func badger() {
 	for _, i := range res {
 		fmt.Printf("scan...%v...%s\n", len(res), string(i))
 	}
-	res = db.Range([]byte("xxx"), []byte("xxy"))
+	res = db.Range([]byte("xxx"), []byte("xxz"))
 	for _, i := range res {
 		fmt.Printf("range...%v...%s\n", len(res), string(i))
 	}
