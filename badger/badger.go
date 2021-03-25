@@ -2,7 +2,7 @@ package badger
 
 import (
 	"bytes"
-	"fmt"
+	//"fmt"
 	"time"
 
 	badger "github.com/dgraph-io/badger/v3"
@@ -113,7 +113,7 @@ func (b *Badger) Range(start, limit []byte) (res [][]byte) {
 		defer it.Close()
 		for it.Rewind(); it.Valid(); it.Next() {
 			item := it.Item()
-			fmt.Printf("%s, %s, %s, %v, %v\n", string(start), string(limit), string(item.Key()), bytes.Compare(start, item.Key()), bytes.Compare(limit, item.Key()))
+			//fmt.Printf("%s, %s, %s, %v, %v\n", string(start), string(limit), string(item.Key()), bytes.Compare(start, item.Key()), bytes.Compare(limit, item.Key()))
 			if bytes.Compare(start, item.Key()) <= 0 {
 				if bytes.Compare(limit, item.Key()) > 0 {
 					if val, err := item.ValueCopy(nil); err == nil {

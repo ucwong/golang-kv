@@ -161,7 +161,7 @@ func (b *Bolt) Range(start, limit []byte) (res [][]byte) {
 			return nil
 		}
 		if err := buk.ForEach(func(k, v []byte) error {
-			fmt.Printf("%s, %s, %s, %v, %v\n", string(start), string(limit), string(k), bytes.Compare(start, k), bytes.Compare(limit, k))
+			//fmt.Printf("%s, %s, %s, %v, %v\n", string(start), string(limit), string(k), bytes.Compare(start, k), bytes.Compare(limit, k))
 			if bytes.Compare(start, k) <= 0 {
 				if bytes.Compare(limit, k) > 0 {
 					res = append(res, common.SafeCopy(nil, v))
