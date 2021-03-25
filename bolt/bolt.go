@@ -2,6 +2,7 @@ package bolt
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"time"
 
@@ -159,13 +160,19 @@ func (b *Bolt) Range(start, limit []byte) (res [][]byte) {
 		if buk == nil {
 			return nil
 		}
-		buk.ForEach(func(k, v []byte) error {
-			//fmt.Printf("%s, %s, %s, %v, %v\n", string(start), string(limit), string(k), bytes.Compare(start, k), bytes.Compare(limit, k))
-			if bytes.Compare(start, k) <= 0 && bytes.Compare(limit, k) > 0 {
-				res = append(res, common.SafeCopy(nil, v))
+		if err := buk.ForEach(func(k, v []byte) error {
+			fmt.Printf("%s, %s, %s, %v, %v\n", string(start), string(limit), string(k), bytes.Compare(start, k), bytes.Compare(limit, k))
+			if bytes.Compare(start, k) <= 0 {
+				if bytes.Compare(limit, k) > 0 {
+					res = append(res, common.SafeCopy(nil, v))
+				} else {
+					return errors.New("Stop")
+				}
 			}
 			return nil
-		})
+		}); err != nil {
+			return nil
+		}
 		return nil
 	})
 	return

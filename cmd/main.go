@@ -97,9 +97,12 @@ func bolt() {
 	var db bucket.Bucket
 
 	db = bucket.Bolt(".bolt")
+	db.Set([]byte("yx"), []byte("yx"))
+	db.Set([]byte("yy"), []byte("yy"))
 	db.Set([]byte("a"), []byte("a"))
 	db.Set([]byte("b"), []byte("b"))
 	db.Set([]byte("x"), []byte("x"))
+	db.Set([]byte("y"), []byte("y"))
 	db.Set([]byte("xxy"), []byte("xxy"))
 	db.Set([]byte("xxx"), []byte("xxx"))
 	db.Set([]byte("xxxyx"), []byte("xxxyx"))
@@ -175,6 +178,8 @@ func badger() {
 	var db bucket.Bucket
 
 	db = bucket.Badger(".badger")
+	db.Set([]byte("yx"), []byte("yx"))
+	db.Set([]byte("yy"), []byte("yy"))
 	db.Set([]byte("y"), []byte("y"))
 	db.Set([]byte("x"), []byte("x"))
 	db.Set([]byte("xxy"), []byte("xxy"))
