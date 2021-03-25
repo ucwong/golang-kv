@@ -18,11 +18,11 @@ type LevelDB struct {
 	ttl_map *ttlmap.Map
 }
 
-func New() *LevelDB {
+func Open(path string) *LevelDB {
 	db := &LevelDB{}
-	ldb, err := leveldb.OpenFile(".leveldb", &opt.Options{OpenFilesCacheCapacity: 32})
+	ldb, err := leveldb.OpenFile(path, &opt.Options{OpenFilesCacheCapacity: 32})
 	if _, iscorrupted := err.(*errors.ErrCorrupted); iscorrupted {
-		ldb, err = leveldb.RecoverFile(".leveldb", nil)
+		ldb, err = leveldb.RecoverFile(path, nil)
 	}
 	if err != nil {
 		return nil

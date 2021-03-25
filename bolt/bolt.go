@@ -18,9 +18,9 @@ type Bolt struct {
 
 const GLOBAL = "bolt"
 
-func New() *Bolt {
+func Open(path string) *Bolt {
 	b := &Bolt{}
-	if db, err := bolt.Open(".bolt", 0600, nil); err == nil {
+	if db, err := bolt.Open(path, 0600, nil); err == nil {
 		b.engine = db
 	} else {
 		panic("bolt open failed")

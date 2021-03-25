@@ -6,18 +6,14 @@ import (
 	"github.com/ucwong/bucket/leveldb"
 )
 
-func Badger() Bucket {
-	return badger.New()
+func Badger(path string) Bucket {
+	return badger.Open(path)
 }
 
-func Bolt() Bucket {
-	return bolt.New()
+func Bolt(path string) Bucket {
+	return bolt.Open(path)
 }
 
-func LevelDB() Bucket {
-	return leveldb.New()
-}
-
-func New() Bucket {
-	return badger.New()
+func LevelDB(path string) Bucket {
+	return leveldb.Open(path)
 }

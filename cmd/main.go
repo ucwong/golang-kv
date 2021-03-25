@@ -8,17 +8,17 @@ import (
 )
 
 func main() {
-	//bolt()
-	//badger()
+	bolt()
+	badger()
 	leveldb()
 }
 
-var batch int = 10
+var batch int = 2
 
 func leveldb() {
 	var db bucket.Bucket
 
-	db = bucket.LevelDB()
+	db = bucket.LevelDB(".leveldb")
 
 	db.Set([]byte("yx"), []byte("yx"))
 	db.Set([]byte("yy"), []byte("yy"))
@@ -90,7 +90,7 @@ func leveldb() {
 func bolt() {
 	var db bucket.Bucket
 
-	db = bucket.Bolt()
+	db = bucket.Bolt(".bolt")
 	db.Set([]byte("a"), []byte("a"))
 	db.Set([]byte("b"), []byte("b"))
 	db.Set([]byte("x"), []byte("x"))
@@ -162,7 +162,7 @@ func bolt() {
 func badger() {
 	var db bucket.Bucket
 
-	db = bucket.Badger()
+	db = bucket.Badger(".badger")
 	db.Set([]byte("y"), []byte("y"))
 	db.Set([]byte("x"), []byte("x"))
 	db.Set([]byte("xxy"), []byte("xxy"))

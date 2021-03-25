@@ -11,9 +11,9 @@ type Badger struct {
 	engine *badger.DB
 }
 
-func New() *Badger {
+func Open(path string) *Badger {
 	b := &Badger{}
-	if bg, err := badger.Open(badger.DefaultOptions(".badger")); err == nil {
+	if bg, err := badger.Open(badger.DefaultOptions(path)); err == nil {
 		b.engine = bg
 	} else {
 		panic("badger open failed")
