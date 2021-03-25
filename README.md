@@ -7,7 +7,7 @@ go run cmd/main.go
 
 used by 
 ```
-import "github.com/ucwong/bucket"
+import "github.com/ucwong/golang-kv"
 
 ...
 
