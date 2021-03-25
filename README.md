@@ -1,4 +1,4 @@
-# bucket
+# Golang-kv
 Bundle embedded databases with fixed api
 
 ```
