@@ -105,6 +105,21 @@ func (b *Badger) SetTTL(k, v []byte, expire time.Duration) (err error) {
 }
 
 func (b *Badger) Range(start, limit []byte) (res [][]byte) {
+	b.engine.View(func(txn *badger.Txn) error {
+		opts := badger.DefaultIteratorOptions
+		opts.PrefetchSize = 10
+		it := txn.NewIterator(opts)
+		defer it.Close()
+		for it.Rewind(); it.Valid(); it.Next() {
+			item := it.Item()
+			if bytes.Compare(start, item.Key()) <= 0 && bytes.Compare(limit, item.Key()) > 0 {
+				if val, err := item.ValueCopy(nil); err == nil {
+					res = append(res, val)
+				}
+			}
+		}
+		return nil
+	})
 	return
 }
 

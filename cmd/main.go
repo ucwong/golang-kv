@@ -28,6 +28,7 @@ func leveldb() {
 	db.Set([]byte("y"), []byte("y"))
 	db.Set([]byte("xxy"), []byte("xxy"))
 	db.Set([]byte("xxxyx"), []byte("xxxyx"))
+	db.Set([]byte("xxx"), []byte("xxx"))
 
 	db.SetTTL([]byte("ttlxxxyx"), []byte("ttlxxxyx"), 1000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
@@ -42,6 +43,10 @@ func leveldb() {
 	res := db.Scan()
 	for _, i := range res {
 		fmt.Printf("scan...%v...%s\n", len(res), string(i))
+	}
+	res = db.Range([]byte("xxx"), []byte("xxy"))
+	for _, i := range res {
+		fmt.Printf("range...%v...%s\n", len(res), string(i))
 	}
 	res = db.Prefix([]byte("xx"))
 	for _, i := range res {
@@ -95,6 +100,7 @@ func bolt() {
 	db.Set([]byte("b"), []byte("b"))
 	db.Set([]byte("x"), []byte("x"))
 	db.Set([]byte("xxy"), []byte("xxy"))
+	db.Set([]byte("xxx"), []byte("xxx"))
 	db.Set([]byte("xxxyx"), []byte("xxxyx"))
 	db.SetTTL([]byte("ttlxxxyx"), []byte("ttlxxxyx"), 1000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
@@ -109,6 +115,10 @@ func bolt() {
 	res := db.Scan()
 	for _, i := range res {
 		fmt.Printf("scan...%v...%s\n", len(res), string(i))
+	}
+	res = db.Range([]byte("xxx"), []byte("xxy"))
+	for _, i := range res {
+		fmt.Printf("range...%v...%s\n", len(res), string(i))
 	}
 	res = db.Prefix([]byte("xx"))
 	for _, i := range res {
@@ -167,6 +177,7 @@ func badger() {
 	db.Set([]byte("x"), []byte("x"))
 	db.Set([]byte("xxy"), []byte("xxy"))
 	db.Set([]byte("xxxyx"), []byte("xxxyx"))
+	db.Set([]byte("xxx"), []byte("xxx"))
 	db.SetTTL([]byte("ttlxxxyx"), []byte("ttlxxxyx"), 1000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx2"), []byte("ttlxxxyx2"), 5000*time.Millisecond)
@@ -180,6 +191,10 @@ func badger() {
 	res := db.Scan()
 	for _, i := range res {
 		fmt.Printf("scan...%v...%s\n", len(res), string(i))
+	}
+	res = db.Range([]byte("xxx"), []byte("xxy"))
+	for _, i := range res {
+		fmt.Printf("range...%v...%s\n", len(res), string(i))
 	}
 	res = db.Prefix([]byte("x"))
 	for _, i := range res {
