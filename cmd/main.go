@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/ucwong/bucket"
+	"github.com/ucwong/golang-kv"
 	"strconv"
 	"time"
 )
@@ -18,7 +18,7 @@ var batch int = 2
 func leveldb() {
 	var db bucket.Bucket
 
-	db = bucket.LevelDB(".leveldb")
+	db = bucket.LevelDB(".leveldb1")
 
 	db.Set([]byte("yx"), []byte("yx"))
 	db.Set([]byte("yy"), []byte("yy"))

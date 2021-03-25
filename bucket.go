@@ -1,9 +1,9 @@
 package bucket
 
 import (
-	"github.com/ucwong/bucket/badger"
-	"github.com/ucwong/bucket/bolt"
-	"github.com/ucwong/bucket/leveldb"
+	"github.com/ucwong/golang-kv/badger"
+	"github.com/ucwong/golang-kv/bolt"
+	"github.com/ucwong/golang-kv/leveldb"
 )
 
 func Badger(path string) Bucket {

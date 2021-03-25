@@ -10,7 +10,7 @@ import (
 	"github.com/syndtr/goleveldb/leveldb/errors"
 	"github.com/syndtr/goleveldb/leveldb/opt"
 	"github.com/syndtr/goleveldb/leveldb/util"
-	"github.com/ucwong/bucket/common"
+	"github.com/ucwong/golang-kv/common"
 )
 
 type LevelDB struct {
