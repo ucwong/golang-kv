@@ -1,4 +1,4 @@
-package bucket
+package kv
 
 import (
 	"github.com/ucwong/golang-kv/badger"

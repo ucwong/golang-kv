@@ -16,9 +16,9 @@ func main() {
 var batch int = 2
 
 func leveldb() {
-	var db bucket.Bucket
+	var db kv.Bucket
 
-	db = bucket.LevelDB(".leveldb1")
+	db = kv.LevelDB(".leveldb1")
 
 	db.Set([]byte("yx"), []byte("yx"))
 	db.Set([]byte("yy"), []byte("yy"))
@@ -94,9 +94,9 @@ func leveldb() {
 }
 
 func bolt() {
-	var db bucket.Bucket
+	var db kv.Bucket
 
-	db = bucket.Bolt(".bolt")
+	db = kv.Bolt(".bolt")
 	db.Set([]byte("yx"), []byte("yx"))
 	db.Set([]byte("yy"), []byte("yy"))
 	db.Set([]byte("a"), []byte("a"))
@@ -175,9 +175,9 @@ func bolt() {
 }
 
 func badger() {
-	var db bucket.Bucket
+	var db kv.Bucket
 
-	db = bucket.Badger(".badger")
+	db = kv.Badger(".badger")
 	db.Set([]byte("yx"), []byte("yx"))
 	db.Set([]byte("yy"), []byte("yy"))
 	db.Set([]byte("y"), []byte("y"))
