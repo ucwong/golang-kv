@@ -37,7 +37,8 @@ func Open(path string) *LevelDB {
 		},
 		OnWillEvict: func(key string, item ttlmap.Item) {
 			fmt.Printf("evicted: [%s=%v]\n", key, item.Value())
-			db.Del([]byte(key))
+			//db.Del([]byte(key))
+			db.engine.Delete([]byte(key), nil)
 		},
 	}
 	db.ttl_map = ttlmap.New(options)
