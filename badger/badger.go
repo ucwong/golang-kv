@@ -13,6 +13,9 @@ type Badger struct {
 }
 
 func Open(path string) *Badger {
+	if len(path) == 0 {
+		path = ".badger"
+	}
 	b := &Badger{}
 	if bg, err := badger.Open(badger.DefaultOptions(path)); err == nil {
 		b.engine = bg
