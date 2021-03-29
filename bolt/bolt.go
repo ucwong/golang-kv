@@ -16,7 +16,7 @@ type Bolt struct {
 	ttl_map *ttlmap.Map
 }
 
-const GLOBAL = "bolt"
+const GLOBAL = "m41gA7omIWU4s"
 
 func Open(path string) *Bolt {
 	b := &Bolt{}
@@ -35,11 +35,10 @@ func Open(path string) *Bolt {
 		OnWillEvict: func(key string, item ttlmap.Item) {
 			fmt.Printf("evicted: [%s=%v]\n", key, item.Value())
 			b.engine.Update(func(tx *bolt.Tx) error {
-				buk := tx.Bucket([]byte(GLOBAL))
-				if buk == nil {
-					return nil
+				if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
+					return buk.Delete([]byte(key))
 				}
-				return buk.Delete([]byte(key))
+				return nil
 			})
 		},
 	}
@@ -48,14 +47,12 @@ func Open(path string) *Bolt {
 }
 
 func (b *Bolt) Get(k []byte) (v []byte) {
-	item, err := b.ttl_map.Get(string(k))
-	if err == nil {
+	if item, err := b.ttl_map.Get(string(k)); err == nil {
 		return []byte(item.Value().(string))
 	}
 
 	b.engine.View(func(tx *bolt.Tx) error {
-		buk := tx.Bucket([]byte(GLOBAL))
-		if buk != nil {
+		if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
 			v = buk.Get(k)
 		}
 		return nil
@@ -80,11 +77,10 @@ func (b *Bolt) Del(k []byte) (err error) {
 	go b.ttl_map.Delete(string(k))
 
 	err = b.engine.Update(func(tx *bolt.Tx) error {
-		buk := tx.Bucket([]byte(GLOBAL))
-		if buk == nil {
-			return nil
+		if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
+			return buk.Delete(k)
 		}
-		return buk.Delete(k)
+		return nil
 	})
 
 	return
@@ -92,13 +88,11 @@ func (b *Bolt) Del(k []byte) (err error) {
 
 func (b *Bolt) Prefix(prefix []byte) (res [][]byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		buk := tx.Bucket([]byte(GLOBAL))
-		if buk == nil {
-			return nil
-		}
-		c := buk.Cursor()
-		for k, v := c.Seek(prefix); k != nil && bytes.HasPrefix(k, prefix); k, v = c.Next() {
-			res = append(res, common.SafeCopy(nil, v))
+		if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
+			c := buk.Cursor()
+			for k, v := c.Seek(prefix); k != nil && bytes.HasPrefix(k, prefix); k, v = c.Next() {
+				res = append(res, common.SafeCopy(nil, v))
+			}
 		}
 
 		return nil
@@ -109,15 +103,12 @@ func (b *Bolt) Prefix(prefix []byte) (res [][]byte) {
 
 func (b *Bolt) Suffix(suffix []byte) (res [][]byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		buk := tx.Bucket([]byte(GLOBAL))
-		if buk == nil {
-			return nil
-		}
-
-		c := buk.Cursor()
-		for k, v := c.First(); k != nil; k, v = c.Next() {
-			if bytes.HasSuffix(k, suffix) {
-				res = append(res, common.SafeCopy(nil, v))
+		if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
+			c := buk.Cursor()
+			for k, v := c.First(); k != nil; k, v = c.Next() {
+				if bytes.HasSuffix(k, suffix) {
+					res = append(res, common.SafeCopy(nil, v))
+				}
 			}
 		}
 
@@ -129,14 +120,12 @@ func (b *Bolt) Suffix(suffix []byte) (res [][]byte) {
 
 func (b *Bolt) Scan() (res [][]byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		buk := tx.Bucket([]byte(GLOBAL))
-		if buk == nil {
-			return nil
+		if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
+			buk.ForEach(func(k, v []byte) error {
+				res = append(res, common.SafeCopy(nil, v))
+				return nil
+			})
 		}
-		buk.ForEach(func(k, v []byte) error {
-			res = append(res, common.SafeCopy(nil, v))
-			return nil
-		})
 		return nil
 	})
 
@@ -161,16 +150,14 @@ func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
 
 func (b *Bolt) Range(start, limit []byte) (res [][]byte) {
 	b.engine.View(func(tx *bolt.Tx) error {
-		buk := tx.Bucket([]byte(GLOBAL))
-		if buk == nil {
-			return nil
-		}
-		c := buk.Cursor()
-		for k, v := c.Seek(start); k != nil && bytes.Compare(start, k) <= 0; k, v = c.Next() {
-			if bytes.Compare(limit, k) > 0 {
-				res = append(res, common.SafeCopy(nil, v))
-			} else {
-				break
+		if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
+			c := buk.Cursor()
+			for k, v := c.Seek(start); k != nil && bytes.Compare(start, k) <= 0; k, v = c.Next() {
+				if bytes.Compare(limit, k) > 0 {
+					res = append(res, common.SafeCopy(nil, v))
+				} else {
+					break
+				}
 			}
 		}
 
