@@ -16,7 +16,7 @@ type Bolt struct {
 	ttl_map *ttlmap.Map
 }
 
-const GLOBAL = "bolt"
+const GLOBAL = "m41gA7omIWU4s"
 
 func Open(path string) *Bolt {
 	b := &Bolt{}
