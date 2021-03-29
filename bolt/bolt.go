@@ -23,7 +23,7 @@ func Open(path string) *Bolt {
 	if db, err := bolt.Open(path, 0600, nil); err == nil {
 		b.engine = db
 	} else {
-		panic("bolt open failed")
+		panic(err)
 	}
 
 	options := &ttlmap.Options{
