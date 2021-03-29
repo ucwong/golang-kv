@@ -20,12 +20,14 @@ vs := badger.Prefix([]byte("x"))
 ...
 
 bolt := kv.Bolt("")
+defer bolt.Close()
 
 bolt.setTTL([]byte("k"), []byte("v"), time.Second)
 
 ...
 
 ldb := kv.LevelDB("")
+defer ldb.Close()
 
 ...
 
