@@ -11,7 +11,7 @@ import "github.com/ucwong/golang-kv"
 
 ...
 
-badger := kv.Badger()
+badger := kv.Badger("")
 defer badger.Close()
 badger.Set([]byte("x", []byte("y")))
 v := badger.Get([]byte("x"))
@@ -19,9 +19,13 @@ vs := badger.Prefix([]byte("x"))
 
 ...
 
-bolt := kv.Bolt()
+bolt := kv.Bolt("")
 
 bolt.setTTL([]byte("k"), []byte("v"), time.Second)
+
+...
+
+ldb := kv.LevelDB("")
 
 ...
 
