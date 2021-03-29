@@ -17,7 +17,7 @@ func Open(path string) *Badger {
 	if bg, err := badger.Open(badger.DefaultOptions(path)); err == nil {
 		b.engine = bg
 	} else {
-		panic("badger open failed")
+		panic(err)
 	}
 	return b
 }
