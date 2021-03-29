@@ -34,7 +34,13 @@ func Open(path string) *Bolt {
 		},
 		OnWillEvict: func(key string, item ttlmap.Item) {
 			fmt.Printf("evicted: [%s=%v]\n", key, item.Value())
-			b.Del([]byte(key))
+			b.engine.Update(func(tx *bolt.Tx) error {
+				buk := tx.Bucket([]byte(GLOBAL))
+				if buk == nil {
+					return nil
+				}
+				return buk.Delete([]byte(key))
+			})
 		},
 	}
 	b.ttl_map = ttlmap.New(options)
