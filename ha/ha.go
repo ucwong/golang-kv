@@ -4,6 +4,8 @@ import (
 	"github.com/ucwong/golang-kv/badger"
 	"github.com/ucwong/golang-kv/bolt"
 	"github.com/ucwong/golang-kv/leveldb"
+
+	"sync"
 	"time"
 )
 
@@ -11,6 +13,7 @@ type Ha struct {
 	ldb *leveldb.LevelDB
 	bgr *badger.Badger
 	bot *bolt.Bolt
+	wg  sync.WaitGroup
 }
 
 const GLOBAL = "m41gA7omIWU4s"
@@ -40,15 +43,41 @@ func (b *Ha) Get(k []byte) (v []byte) {
 }
 
 func (b *Ha) Set(k, v []byte) (err error) {
-	go b.bot.Set(k, v)
-	go b.bgr.Set(k, v)
-	return b.ldb.Set(k, v)
+	b.wg.Add(3)
+	go func() {
+		defer b.wg.Done()
+		b.bot.Set(k, v)
+	}()
+	go func() {
+		defer b.wg.Done()
+		b.bgr.Set(k, v)
+	}()
+	go func() {
+		defer b.wg.Done()
+		b.ldb.Set(k, v)
+	}()
+	b.wg.Wait()
+	return
 }
 
 func (b *Ha) Del(k []byte) (err error) {
-	go b.bot.Del(k)
-	go b.bgr.Del(k)
-	return b.ldb.Del(k)
+	b.wg.Add(3)
+	go func() {
+		defer b.wg.Done()
+		b.bot.Del(k)
+	}()
+	go func() {
+		defer b.wg.Done()
+		b.bgr.Del(k)
+	}()
+	go func() {
+		defer b.wg.Done()
+		b.ldb.Del(k)
+	}()
+
+	b.wg.Wait()
+
+	return
 }
 
 func (b *Ha) Prefix(prefix []byte) (res [][]byte) {
@@ -86,9 +115,26 @@ func (b *Ha) Scan() (res [][]byte) {
 }
 
 func (b *Ha) SetTTL(k, v []byte, expire time.Duration) (err error) {
-	go b.bot.SetTTL(k, v, expire)
-	go b.bgr.SetTTL(k, v, expire)
-	return b.ldb.SetTTL(k, v, expire)
+	b.wg.Add(3)
+
+	go func() {
+		defer b.wg.Done()
+		b.bot.SetTTL(k, v, expire)
+	}()
+
+	go func() {
+		defer b.wg.Done()
+		b.bgr.SetTTL(k, v, expire)
+	}()
+
+	go func() {
+		defer b.wg.Done()
+		b.ldb.SetTTL(k, v, expire)
+	}()
+
+	b.wg.Wait()
+
+	return
 }
 
 func (b *Ha) Range(start, limit []byte) (res [][]byte) {
@@ -104,9 +150,25 @@ func (b *Ha) Range(start, limit []byte) (res [][]byte) {
 	return
 }
 
-func (b *Ha) Close() error {
-	b.bot.Close()
-	b.ldb.Close()
-	b.bgr.Close()
-	return nil
+func (b *Ha) Close() (err error) {
+	b.wg.Add(3)
+
+	go func() {
+		defer b.wg.Done()
+		b.bot.Close()
+	}()
+
+	go func() {
+		defer b.wg.Done()
+		b.ldb.Close()
+	}()
+
+	go func() {
+		defer b.wg.Done()
+		b.bgr.Close()
+	}()
+
+	b.wg.Wait()
+
+	return
 }
