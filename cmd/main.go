@@ -13,7 +13,7 @@ func main() {
 	leveldb()
 }
 
-var batch int = 2
+var batch int = 10
 
 func leveldb() {
 	var db kv.Bucket

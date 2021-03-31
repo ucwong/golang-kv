@@ -36,7 +36,7 @@ func Open(path string) *Bolt {
 			//b.Del([]byte(key))
 		},
 		OnWillEvict: func(key string, item ttlmap.Item) {
-			fmt.Printf("evicted: [%s=%v]\n", key, item.Value())
+			//fmt.Printf("evicted: [%s=%v]\n", key, item.Value())
 			b.engine.Update(func(tx *bolt.Tx) error {
 				if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
 					return buk.Delete([]byte(key))
