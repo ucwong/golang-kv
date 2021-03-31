@@ -6,6 +6,7 @@ import (
 	"time"
 
 	badger "github.com/dgraph-io/badger/v3"
+	//"github.com/dgraph-io/badger/v3/options"
 )
 
 type Badger struct {
@@ -17,6 +18,7 @@ func Open(path string) *Badger {
 		path = ".badger"
 	}
 	b := &Badger{}
+	//if bg, err := badger.Open(badger.DefaultOptions(path).WithCompression(options.ZSTD)); err == nil {
 	if bg, err := badger.Open(badger.DefaultOptions(path)); err == nil {
 		b.engine = bg
 	} else {
@@ -86,7 +88,7 @@ func (b *Badger) Suffix(k []byte) (res [][]byte) {
 func (b *Badger) Scan() (res [][]byte) {
 	b.engine.View(func(txn *badger.Txn) error {
 		opts := badger.DefaultIteratorOptions
-		opts.PrefetchSize = 10
+		opts.PrefetchSize = 128
 		it := txn.NewIterator(opts)
 		defer it.Close()
 		for it.Rewind(); it.Valid(); it.Next() {
@@ -111,6 +113,7 @@ func (b *Badger) SetTTL(k, v []byte, expire time.Duration) (err error) {
 func (b *Badger) Range(start, limit []byte) (res [][]byte) {
 	b.engine.View(func(txn *badger.Txn) error {
 		opts := badger.DefaultIteratorOptions
+		opts.PrefetchSize = 128
 		it := txn.NewIterator(opts)
 		defer it.Close()
 		for it.Seek(start); it.Valid() && bytes.Compare(start, it.Item().Key()) <= 0; it.Next() {
