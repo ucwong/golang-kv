@@ -4,7 +4,6 @@ import (
 	"github.com/ucwong/golang-kv/badger"
 	"github.com/ucwong/golang-kv/bolt"
 	"github.com/ucwong/golang-kv/leveldb"
-
 	"sync"
 	"time"
 )
@@ -16,16 +15,19 @@ type Ha struct {
 	wg  sync.WaitGroup
 }
 
-const GLOBAL = "m41gA7omIWU4s"
-
 func Open(path string) *Ha {
 	if len(path) == 0 {
 		path = ".ha"
 	}
+
 	ha := &Ha{}
 	ha.bot = bolt.Open(path + ".bot")
 	ha.bgr = badger.Open(path + ".badger")
 	ha.ldb = leveldb.Open(path + ".leveldb")
+
+	if ha.bot == nil || ha.bgr == nil || ha.ldb == nil {
+		return nil
+	}
 
 	return ha
 }
