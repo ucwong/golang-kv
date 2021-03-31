@@ -2,7 +2,7 @@ package leveldb
 
 import (
 	"bytes"
-	"fmt"
+	//"fmt"
 	"time"
 
 	"github.com/imkira/go-ttlmap"
@@ -35,11 +35,11 @@ func Open(path string) *LevelDB {
 	options := &ttlmap.Options{
 		InitialCapacity: 1024 * 1024,
 		OnWillExpire: func(key string, item ttlmap.Item) {
-			fmt.Printf("expired: [%s=%v]\n", key, item.Value())
+			//fmt.Printf("expired: [%s=%v]\n", key, item.Value())
 			//b.Del([]byte(key))
 		},
 		OnWillEvict: func(key string, item ttlmap.Item) {
-			fmt.Printf("evicted: [%s=%v]\n", key, item.Value())
+			//fmt.Printf("evicted: [%s=%v]\n", key, item.Value())
 			//db.Del([]byte(key))
 			db.engine.Delete([]byte(key), nil)
 		},

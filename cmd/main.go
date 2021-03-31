@@ -14,7 +14,7 @@ func main() {
 	ha()
 }
 
-var batch int = 1000
+var batch int = 10
 
 func leveldb() {
 	var db kv.Bucket
