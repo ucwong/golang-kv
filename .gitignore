@@ -19,3 +19,5 @@
 .bolt
 *.leveldb*
 .leveldb
+.ha
+*.ha*
