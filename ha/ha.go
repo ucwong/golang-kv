@@ -21,7 +21,7 @@ func Open(path string) *Ha {
 	}
 
 	ha := &Ha{}
-	ha.bot = bolt.Open(path + ".bot")
+	ha.bot = bolt.Open(path + ".bolt")
 	ha.bgr = badger.Open(path + ".badger")
 	ha.ldb = leveldb.Open(path + ".leveldb")
 
