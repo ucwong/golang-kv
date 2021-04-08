@@ -8,9 +8,9 @@ import (
 )
 
 func main() {
-	//bolt()
-	//badger()
-	//leveldb()
+	bolt()
+	badger()
+	leveldb()
 	ha()
 }
 
@@ -97,7 +97,7 @@ func leveldb() {
 func ha() {
 	var db kv.Bucket
 
-	db = kv.HA("ssd", 2)
+	db = kv.HA("", 2)
 
 	db.Set([]byte("yx"), []byte("yx"))
 	db.Set([]byte("yy"), []byte("yy"))
