@@ -14,15 +14,16 @@ type Badger struct {
 }
 
 func Open(path string) *Badger {
-	if len(path) == 0 {
-		path = ".badger"
-	}
+	//if len(path) == 0 {
+	path = path + ".badger"
+	//}
 	b := &Badger{}
 	//if bg, err := badger.Open(badger.DefaultOptions(path).WithCompression(options.ZSTD)); err == nil {
 	if bg, err := badger.Open(badger.DefaultOptions(path)); err == nil {
 		b.engine = bg
 	} else {
-		panic(err)
+		//panic(err)
+		return nil
 	}
 	return b
 }

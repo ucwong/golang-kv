@@ -19,6 +19,6 @@ func LevelDB(path string) Bucket {
 	return leveldb.Open(path)
 }
 
-func HA(path string) Bucket {
-	return ha.Open(path)
+func HA(path string, level int) Bucket {
+	return ha.Open(path, level)
 }

@@ -1,6 +1,7 @@
 package ha
 
 import (
+	"fmt"
 	"github.com/ucwong/golang-kv/badger"
 	"github.com/ucwong/golang-kv/bolt"
 	"github.com/ucwong/golang-kv/leveldb"
@@ -15,67 +16,104 @@ type Ha struct {
 	wg  sync.WaitGroup
 }
 
-func Open(path string) *Ha {
+func Open(path string, level int) *Ha {
 	if len(path) == 0 {
-		path = ".ha"
+		//path = ".ha"
 	}
 
 	ha := &Ha{}
-	ha.bot = bolt.Open(path + ".bolt")
-	ha.bgr = badger.Open(path + ".badger")
-	ha.ldb = leveldb.Open(path + ".leveldb")
+	switch level {
+	case 0:
+		ha.bgr = badger.Open(path)
+	case 1:
+		ha.bot = bolt.Open(path)
+		ha.bgr = badger.Open(path)
+	case 2:
+		ha.bot = bolt.Open(path)
+		ha.bgr = badger.Open(path)
+		ha.ldb = leveldb.Open(path)
+	default:
+		ha.bgr = badger.Open(path)
+	}
 
-	if ha.bot == nil || ha.bgr == nil || ha.ldb == nil {
+	if ha.bot == nil && ha.bgr == nil && ha.ldb == nil {
+		// suc when one engine is available
 		return nil
 	}
+	fmt.Printf("bolt:%v badger:%v leveldb:%v\n", ha.bot, ha.bgr, ha.ldb)
 
 	return ha
 }
 
 func (b *Ha) Get(k []byte) (v []byte) {
-	v = b.bot.Get(k)
+	if b.bot != nil {
+		v = b.bot.Get(k)
+	}
 	if v == nil {
-		v = b.bgr.Get(k)
+		if b.bgr != nil {
+			v = b.bgr.Get(k)
+		}
 	}
 
 	if v == nil {
-		v = b.ldb.Get(k)
+		if b.ldb != nil {
+			v = b.ldb.Get(k)
+		}
 	}
 	return
 }
 
 func (b *Ha) Set(k, v []byte) (err error) {
-	b.wg.Add(3)
-	go func() {
-		defer b.wg.Done()
-		b.bot.Set(k, v)
-	}()
-	go func() {
-		defer b.wg.Done()
-		b.bgr.Set(k, v)
-	}()
-	go func() {
-		defer b.wg.Done()
-		b.ldb.Set(k, v)
-	}()
+	if b.bot != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.bot.Set(k, v)
+		}()
+	}
+	if b.bgr != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.bgr.Set(k, v)
+		}()
+	}
+
+	if b.ldb != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.ldb.Set(k, v)
+		}()
+	}
 	b.wg.Wait()
 	return
 }
 
 func (b *Ha) Del(k []byte) (err error) {
-	b.wg.Add(3)
-	go func() {
-		defer b.wg.Done()
-		b.bot.Del(k)
-	}()
-	go func() {
-		defer b.wg.Done()
-		b.bgr.Del(k)
-	}()
-	go func() {
-		defer b.wg.Done()
-		b.ldb.Del(k)
-	}()
+	if b.bot != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.bot.Del(k)
+		}()
+	}
+
+	if b.bgr != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.bgr.Del(k)
+		}()
+	}
+
+	if b.ldb != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.ldb.Del(k)
+		}()
+	}
 
 	b.wg.Wait()
 
@@ -83,56 +121,79 @@ func (b *Ha) Del(k []byte) (err error) {
 }
 
 func (b *Ha) Prefix(prefix []byte) (res [][]byte) {
-	res = b.bot.Prefix(prefix)
+	if b.bot != nil {
+		res = b.bot.Prefix(prefix)
+	}
 	if res == nil {
-		res = b.bgr.Prefix(prefix)
+		if b.bgr != nil {
+			res = b.bgr.Prefix(prefix)
+		}
 	}
 
 	if res == nil {
-		res = b.ldb.Prefix(prefix)
+		if b.ldb != nil {
+			res = b.ldb.Prefix(prefix)
+		}
 	}
 	return
 }
 
 func (b *Ha) Suffix(suffix []byte) (res [][]byte) {
-	res = b.bot.Suffix(suffix)
-	if res == nil {
-		res = b.bgr.Suffix(suffix)
+	if b.bot != nil {
+		res = b.bot.Suffix(suffix)
 	}
 	if res == nil {
-		res = b.ldb.Suffix(suffix)
+		if b.bgr != nil {
+			res = b.bgr.Suffix(suffix)
+		}
+	}
+	if res == nil {
+		if b.ldb != nil {
+			res = b.ldb.Suffix(suffix)
+		}
 	}
 	return
 }
 
 func (b *Ha) Scan() (res [][]byte) {
-	res = b.bot.Scan()
-	if res == nil {
-		res = b.bgr.Scan()
+	if b.bot != nil {
+		res = b.bot.Scan()
 	}
 	if res == nil {
-		res = b.ldb.Scan()
+		if b.bgr != nil {
+			res = b.bgr.Scan()
+		}
+	}
+	if res == nil {
+		if b.ldb != nil {
+			res = b.ldb.Scan()
+		}
 	}
 	return
 }
 
 func (b *Ha) SetTTL(k, v []byte, expire time.Duration) (err error) {
-	b.wg.Add(3)
-
-	go func() {
-		defer b.wg.Done()
-		b.bot.SetTTL(k, v, expire)
-	}()
-
-	go func() {
-		defer b.wg.Done()
-		b.bgr.SetTTL(k, v, expire)
-	}()
-
-	go func() {
-		defer b.wg.Done()
-		b.ldb.SetTTL(k, v, expire)
-	}()
+	if b.bot != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.bot.SetTTL(k, v, expire)
+		}()
+	}
+	if b.bgr != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.bgr.SetTTL(k, v, expire)
+		}()
+	}
+	if b.ldb != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.ldb.SetTTL(k, v, expire)
+		}()
+	}
 
 	b.wg.Wait()
 
@@ -140,35 +201,48 @@ func (b *Ha) SetTTL(k, v []byte, expire time.Duration) (err error) {
 }
 
 func (b *Ha) Range(start, limit []byte) (res [][]byte) {
-	res = b.bot.Range(start, limit)
+	if b.bot != nil {
+		res = b.bot.Range(start, limit)
+	}
 	if res == nil {
-		res = b.bgr.Range(start, limit)
+		if b.bgr != nil {
+			res = b.bgr.Range(start, limit)
+		}
 	}
 
 	if res == nil {
-		res = b.ldb.Range(start, limit)
+		if b.ldb != nil {
+			res = b.ldb.Range(start, limit)
+		}
 	}
 
 	return
 }
 
 func (b *Ha) Close() (err error) {
-	b.wg.Add(3)
+	if b.bot != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.bot.Close()
+		}()
+	}
 
-	go func() {
-		defer b.wg.Done()
-		b.bot.Close()
-	}()
+	if b.ldb != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.ldb.Close()
+		}()
+	}
 
-	go func() {
-		defer b.wg.Done()
-		b.ldb.Close()
-	}()
-
-	go func() {
-		defer b.wg.Done()
-		b.bgr.Close()
-	}()
+	if b.bgr != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
+			b.bgr.Close()
+		}()
+	}
 
 	b.wg.Wait()
 
