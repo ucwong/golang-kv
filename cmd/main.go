@@ -97,7 +97,7 @@ func leveldb() {
 func ha() {
 	var db kv.Bucket
 
-	db = kv.HA("")
+	db = kv.HA("", 0)
 
 	db.Set([]byte("yx"), []byte("yx"))
 	db.Set([]byte("yy"), []byte("yy"))

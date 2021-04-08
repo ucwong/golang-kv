@@ -16,21 +16,31 @@ type Ha struct {
 	wg  sync.WaitGroup
 }
 
-func Open(path string) *Ha {
+func Open(path string, level int) *Ha {
 	if len(path) == 0 {
 		path = ".ha"
 	}
 
 	ha := &Ha{}
-	ha.bot = bolt.Open(path + ".bolt")
-	ha.bgr = badger.Open(path + ".badger")
-	ha.ldb = leveldb.Open(path + ".leveldb")
+	switch level {
+	case 0:
+		ha.bgr = badger.Open(path + ".badger")
+	case 1:
+		ha.bot = bolt.Open(path + ".bolt")
+		ha.bgr = badger.Open(path + ".badger")
+	case 2:
+		ha.bot = bolt.Open(path + ".bolt")
+		ha.bgr = badger.Open(path + ".badger")
+		ha.ldb = leveldb.Open(path + ".leveldb")
+	default:
+		ha.bgr = badger.Open(path + ".badger")
+	}
 
 	if ha.bot == nil && ha.bgr == nil && ha.ldb == nil {
 		// suc when one engine is available
 		return nil
 	}
-	fmt.Printf("bolt:%v dadger:%v leveldb:%v\n", ha.bot, ha.bgr, ha.ldb)
+	fmt.Printf("bolt:%v badger:%v leveldb:%v\n", ha.bot, ha.bgr, ha.ldb)
 
 	return ha
 }
