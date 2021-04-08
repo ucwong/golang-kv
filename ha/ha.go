@@ -1,6 +1,7 @@
 package ha
 
 import (
+	"fmt"
 	"github.com/ucwong/golang-kv/badger"
 	"github.com/ucwong/golang-kv/bolt"
 	"github.com/ucwong/golang-kv/leveldb"
@@ -27,6 +28,7 @@ func Open(path string) *Ha {
 
 	if ha.bot == nil && ha.bgr == nil && ha.ldb == nil {
 		// suc when one engine is available
+		fmt.Printf("%v %v %v", ha.bot, ha.bgr, ha.ldb)
 		return nil
 	}
 
