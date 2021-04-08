@@ -28,7 +28,8 @@ func Open(path string) *LevelDB {
 		ldb, err = leveldb.RecoverFile(path, nil)
 	}
 	if err != nil {
-		panic(err)
+		//panic(err)
+		return nil
 	}
 	db.engine = ldb
 
