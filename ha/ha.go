@@ -18,22 +18,22 @@ type Ha struct {
 
 func Open(path string, level int) *Ha {
 	if len(path) == 0 {
-		path = ".ha"
+		//path = ".ha"
 	}
 
 	ha := &Ha{}
 	switch level {
 	case 0:
-		ha.bgr = badger.Open(path + ".badger")
+		ha.bgr = badger.Open(path)
 	case 1:
-		ha.bot = bolt.Open(path + ".bolt")
-		ha.bgr = badger.Open(path + ".badger")
+		ha.bot = bolt.Open(path)
+		ha.bgr = badger.Open(path)
 	case 2:
-		ha.bot = bolt.Open(path + ".bolt")
-		ha.bgr = badger.Open(path + ".badger")
-		ha.ldb = leveldb.Open(path + ".leveldb")
+		ha.bot = bolt.Open(path)
+		ha.bgr = badger.Open(path)
+		ha.ldb = leveldb.Open(path)
 	default:
-		ha.bgr = badger.Open(path + ".badger")
+		ha.bgr = badger.Open(path)
 	}
 
 	if ha.bot == nil && ha.bgr == nil && ha.ldb == nil {

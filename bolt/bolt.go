@@ -19,9 +19,9 @@ type Bolt struct {
 const GLOBAL = "m41gA7omIWU4s"
 
 func Open(path string) *Bolt {
-	if len(path) == 0 {
-		path = ".bolt"
-	}
+	//if len(path) == 0 {
+	path = path + ".bolt"
+	//}
 	b := &Bolt{}
 	if db, err := bolt.Open(path, 0600, nil); err == nil {
 		b.engine = db

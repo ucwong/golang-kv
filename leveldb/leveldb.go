@@ -19,9 +19,9 @@ type LevelDB struct {
 }
 
 func Open(path string) *LevelDB {
-	if len(path) == 0 {
-		path = ".leveldb"
-	}
+	//if len(path) == 0 {
+	path = path + ".leveldb"
+	//}
 	db := &LevelDB{}
 	ldb, err := leveldb.OpenFile(path, &opt.Options{OpenFilesCacheCapacity: 32})
 	if _, iscorrupted := err.(*errors.ErrCorrupted); iscorrupted {
