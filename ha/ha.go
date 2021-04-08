@@ -64,49 +64,56 @@ func (b *Ha) Get(k []byte) (v []byte) {
 }
 
 func (b *Ha) Set(k, v []byte) (err error) {
-	b.wg.Add(3)
-	go func() {
-		defer b.wg.Done()
-		if b.bot != nil {
+	if b.bot != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.bot.Set(k, v)
-		}
-	}()
-	go func() {
-		defer b.wg.Done()
-		if b.bgr != nil {
+		}()
+	}
+	if b.bgr != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.bgr.Set(k, v)
-		}
-	}()
-	go func() {
-		defer b.wg.Done()
-		if b.ldb != nil {
+		}()
+	}
+
+	if b.ldb != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.ldb.Set(k, v)
-		}
-	}()
+		}()
+	}
 	b.wg.Wait()
 	return
 }
 
 func (b *Ha) Del(k []byte) (err error) {
-	b.wg.Add(3)
-	go func() {
-		defer b.wg.Done()
-		if b.bot != nil {
+	if b.bot != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.bot.Del(k)
-		}
-	}()
-	go func() {
-		defer b.wg.Done()
-		if b.bgr != nil {
+		}()
+	}
+
+	if b.bgr != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.bgr.Del(k)
-		}
-	}()
-	go func() {
-		defer b.wg.Done()
-		if b.ldb != nil {
+		}()
+	}
+
+	if b.ldb != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.ldb.Del(k)
-		}
-	}()
+		}()
+	}
 
 	b.wg.Wait()
 
@@ -166,28 +173,27 @@ func (b *Ha) Scan() (res [][]byte) {
 }
 
 func (b *Ha) SetTTL(k, v []byte, expire time.Duration) (err error) {
-	b.wg.Add(3)
-
-	go func() {
-		defer b.wg.Done()
-		if b.bot != nil {
+	if b.bot != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.bot.SetTTL(k, v, expire)
-		}
-	}()
-
-	go func() {
-		defer b.wg.Done()
-		if b.bgr != nil {
+		}()
+	}
+	if b.bgr != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.bgr.SetTTL(k, v, expire)
-		}
-	}()
-
-	go func() {
-		defer b.wg.Done()
-		if b.ldb != nil {
+		}()
+	}
+	if b.ldb != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.ldb.SetTTL(k, v, expire)
-		}
-	}()
+		}()
+	}
 
 	b.wg.Wait()
 
@@ -214,28 +220,29 @@ func (b *Ha) Range(start, limit []byte) (res [][]byte) {
 }
 
 func (b *Ha) Close() (err error) {
-	b.wg.Add(3)
-
-	go func() {
-		defer b.wg.Done()
-		if b.bot != nil {
+	if b.bot != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.bot.Close()
-		}
-	}()
+		}()
+	}
 
-	go func() {
-		defer b.wg.Done()
-		if b.ldb != nil {
+	if b.ldb != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.ldb.Close()
-		}
-	}()
+		}()
+	}
 
-	go func() {
-		defer b.wg.Done()
-		if b.bgr != nil {
+	if b.bgr != nil {
+		b.wg.Add(1)
+		go func() {
+			defer b.wg.Done()
 			b.bgr.Close()
-		}
-	}()
+		}()
+	}
 
 	b.wg.Wait()
 
