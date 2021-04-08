@@ -28,9 +28,9 @@ func Open(path string) *Ha {
 
 	if ha.bot == nil && ha.bgr == nil && ha.ldb == nil {
 		// suc when one engine is available
-		fmt.Printf("%v %v %v", ha.bot, ha.bgr, ha.ldb)
 		return nil
 	}
+	fmt.Printf("bolt:%v dadger:%v leveldb:%v\n", ha.bot, ha.bgr, ha.ldb)
 
 	return ha
 }
