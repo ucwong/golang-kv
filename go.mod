@@ -1,6 +1,6 @@
 module github.com/ucwong/golang-kv
 
-go 1.17
+go 1.18
 
 require (
 	github.com/dgraph-io/badger/v3 v3.0.0-20210510123917-ca80206d2c0c
