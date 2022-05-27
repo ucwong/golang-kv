@@ -3,7 +3,7 @@ module github.com/ucwong/golang-kv
 go 1.18
 
 require (
-	github.com/dgraph-io/badger/v3 v3.0.0-20220328161545-d9a978bf4b32
+	github.com/dgraph-io/badger/v3 v3.0.0-20220429165824-bc74fea7d03b
 	github.com/imkira/go-ttlmap v2.0.0+incompatible
 	github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
 	go.etcd.io/bbolt v1.3.7-0.20220226045046-fd5535f71f48
