@@ -3,6 +3,8 @@ package bolt
 import (
 	"bytes"
 	//"fmt"
+	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/imkira/go-ttlmap"
@@ -20,10 +22,14 @@ const GLOBAL = "m41gA7omIWU4s"
 
 func Open(path string) *Bolt {
 	//if len(path) == 0 {
-	path = path + ".bolt"
+	path = filepath.Join(path, ".golang-kv", ".bolt")
+	err := os.MkdirAll(path, 0600) //os.FileMode(os.ModePerm))
+	if err != nil {
+		return nil
+	}
 	//}
 	b := &Bolt{}
-	if db, err := bolt.Open(path, 0600, nil); err == nil {
+	if db, err := bolt.Open(filepath.Join(path, ".bolt"), 0600, nil); err == nil {
 		b.engine = db
 	} else {
 		//panic(err)
