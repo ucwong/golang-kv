@@ -3,6 +3,7 @@ package badger
 import (
 	"bytes"
 	//"fmt"
+	"path/filepath"
 	"time"
 
 	badger "github.com/dgraph-io/badger/v3"
@@ -15,7 +16,7 @@ type Badger struct {
 
 func Open(path string) *Badger {
 	//if len(path) == 0 {
-	path = path + ".golang-kv/.badger"
+	path = filepath.Join(path, ".golang-kv", ".badger")
 	//}
 	b := &Badger{}
 	//if bg, err := badger.Open(badger.DefaultOptions(path).WithCompression(options.ZSTD)); err == nil {

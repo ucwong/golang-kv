@@ -21,7 +21,7 @@ type LevelDB struct {
 
 func Open(path string) *LevelDB {
 	//if len(path) == 0 {
-	path = path + filepath.Join(".golang-kv", ".leveldb")
+	path = filepath.Join(path, ".golang-kv", ".leveldb")
 	//}
 	db := &LevelDB{}
 	ldb, err := leveldb.OpenFile(path, &opt.Options{OpenFilesCacheCapacity: 32})
