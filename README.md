@@ -13,7 +13,7 @@ import "github.com/ucwong/golang-kv"
 
 badger := kv.Badger("")
 defer badger.Close()
-badger.Set([]byte("x", []byte("y")))
+badger.Set([]byte("x"), []byte("y")))
 v := badger.Get([]byte("x"))
 vs := badger.Prefix([]byte("x"))
 
