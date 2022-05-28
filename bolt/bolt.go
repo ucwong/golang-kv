@@ -22,6 +22,7 @@ import (
 	"path/filepath"
 	"sync"
 	"time"
+	"fmt"
 
 	"github.com/imkira/go-ttlmap"
 	"github.com/ucwong/golang-kv/common"
@@ -43,6 +44,7 @@ func Open(path string) *Bolt {
 	path = filepath.Join(path, common.GLOBAL_SPACE, ".bolt")
 	err := os.MkdirAll(path, 0600) //os.FileMode(os.ModePerm))
 	if err != nil {
+		fmt.Println(err)
 		return nil
 	}
 	//}

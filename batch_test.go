@@ -191,6 +191,9 @@ func bolt1() {
 	var db Bucket
 
 	db = Bolt("")
+	if db == nil {
+		panic("bolt create err")
+	}
 	db.Set([]byte("yx"), []byte("yx"))
 	db.Set([]byte("yy"), []byte("yy"))
 	db.Set([]byte("a"), []byte("a"))
