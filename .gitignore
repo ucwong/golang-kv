@@ -21,3 +21,4 @@
 .leveldb
 .ha
 *.ha*
+*.sh

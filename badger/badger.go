@@ -23,6 +23,7 @@ import (
 
 	badger "github.com/dgraph-io/badger/v3"
 	//"github.com/dgraph-io/badger/v3/options"
+	"github.com/ucwong/golang-kv/common"
 )
 
 type Badger struct {
@@ -31,7 +32,7 @@ type Badger struct {
 
 func Open(path string) *Badger {
 	//if len(path) == 0 {
-	path = filepath.Join(path, ".golang-kv", ".badger")
+	path = filepath.Join(path, common.GLOBAL_SPACE, ".badger")
 	//}
 	b := &Badger{}
 	//if bg, err := badger.Open(badger.DefaultOptions(path).WithCompression(options.ZSTD)); err == nil {
