@@ -1,0 +1,52 @@
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2.1.3
+      with:
+        go-version: ^1.18
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2.3.1
+
+    - name: Get dependencies
+      run: |
+        go get -v -t -d ./...
+        if [ -f Gopkg.toml ]; then
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+            dep ensure
+        fi
+    #- name: golangci-lint
+    #  uses: actions-contrib/golangci-lint@v1
+
+    # Check the format of code
+    - name: Check code formatting using gofmt
+      uses: Jerome1337/gofmt-action@v1.0.3
+      
+    - name: Static code check
+      run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
+          go vet ./...
+
+    - name: Build
+      run: go build -v .
+
+    - name: Codecov
+      run: |
+        go test -v ./... -coverprofile=coverage.txt -covermode=atomic --race
+        if [ -f coverage.txt ]; then
+            bash <(curl -s https://codecov.io/bash)
+        fi
