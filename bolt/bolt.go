@@ -20,6 +20,7 @@ import (
 	//"fmt"
 	"os"
 	"path/filepath"
+	"sync"
 	"time"
 
 	"github.com/imkira/go-ttlmap"
@@ -31,6 +32,8 @@ import (
 type Bolt struct {
 	engine  *bolt.DB
 	ttl_map *ttlmap.Map
+
+	once sync.Once
 }
 
 const GLOBAL = "m41gA7omIWU4s"
@@ -86,7 +89,7 @@ func (b *Bolt) Get(k []byte) (v []byte) {
 }
 
 func (b *Bolt) Set(k, v []byte) (err error) {
-	go b.ttl_map.Delete(string(k))
+	b.ttl_map.Delete(string(k))
 
 	err = b.engine.Update(func(tx *bolt.Tx) error {
 		buk, e := tx.CreateBucketIfNotExists([]byte(GLOBAL))
@@ -99,7 +102,7 @@ func (b *Bolt) Set(k, v []byte) (err error) {
 }
 
 func (b *Bolt) Del(k []byte) (err error) {
-	go b.ttl_map.Delete(string(k))
+	b.ttl_map.Delete(string(k))
 
 	err = b.engine.Update(func(tx *bolt.Tx) error {
 		if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
