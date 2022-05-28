@@ -18,11 +18,11 @@ package bolt
 import (
 	"bytes"
 	//"fmt"
+	"fmt"
 	"os"
 	"path/filepath"
 	"sync"
 	"time"
-	"fmt"
 
 	"github.com/imkira/go-ttlmap"
 	"github.com/ucwong/golang-kv/common"
