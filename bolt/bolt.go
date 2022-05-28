@@ -42,14 +42,14 @@ const GLOBAL = "m41gA7omIWU4s"
 func Open(path string) *Bolt {
 	//if len(path) == 0 {
 	path = filepath.Join(path, common.GLOBAL_SPACE, ".bolt")
-	err := os.MkdirAll(path, 0600) //os.FileMode(os.ModePerm))
+	err := os.MkdirAll(path, 0777) //os.FileMode(os.ModePerm))
 	if err != nil {
 		fmt.Println(err)
 		return nil
 	}
 	//}
 	b := &Bolt{}
-	if db, err := bolt.Open(filepath.Join(path, ".bolt"), 0600, nil); err == nil {
+	if db, err := bolt.Open(filepath.Join(path, ".bolt"), 0777, nil); err == nil {
 		b.engine = db
 	} else {
 		//panic(err)
