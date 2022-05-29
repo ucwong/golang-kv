@@ -77,14 +77,14 @@ func (ldb *LevelDB) Get(k []byte) (v []byte) {
 }
 
 func (ldb *LevelDB) Set(k, v []byte) (err error) {
-	go ldb.ttl_map.Delete(string(k))
+	ldb.ttl_map.Delete(string(k))
 
 	err = ldb.engine.Put(k, v, nil)
 	return
 }
 
 func (ldb *LevelDB) Del(k []byte) (err error) {
-	go ldb.ttl_map.Delete(string(k))
+	ldb.ttl_map.Delete(string(k))
 
 	err = ldb.engine.Delete(k, nil)
 	return
