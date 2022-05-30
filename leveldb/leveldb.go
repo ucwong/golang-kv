@@ -77,14 +77,18 @@ func (ldb *LevelDB) Get(k []byte) (v []byte) {
 }
 
 func (ldb *LevelDB) Set(k, v []byte) (err error) {
-	ldb.ttl_map.Delete(string(k))
+	if _, err = ldb.ttl_map.Delete(string(k)); err != nil {
+		return
+	}
 
 	err = ldb.engine.Put(k, v, nil)
 	return
 }
 
 func (ldb *LevelDB) Del(k []byte) (err error) {
-	ldb.ttl_map.Delete(string(k))
+	if _, err = ldb.ttl_map.Delete(string(k)); err != nil {
+		return
+	}
 
 	err = ldb.engine.Delete(k, nil)
 	return
@@ -129,8 +133,7 @@ func (ldb *LevelDB) Scan() (res [][]byte) {
 }
 
 func (ldb *LevelDB) SetTTL(k, v []byte, expire time.Duration) (err error) {
-	err = ldb.ttl_map.Set(string(k), ttlmap.NewItem(string(v), ttlmap.WithTTL(expire)), nil)
-	if err != nil {
+	if err = ldb.ttl_map.Set(string(k), ttlmap.NewItem(string(v), ttlmap.WithTTL(expire)), nil); err != nil {
 		return
 	}
 
