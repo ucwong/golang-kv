@@ -4,8 +4,8 @@ go 1.18
 
 require (
 	github.com/dgraph-io/badger/v3 v3.0.0-20220429165824-bc74fea7d03b
-	github.com/imkira/go-ttlmap v2.0.0+incompatible
 	github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
+	github.com/ucwong/go-ttlmap v1.0.2-0.20220531032643-ca9a390e2189
 	go.etcd.io/bbolt v1.3.7-0.20220226045046-fd5535f71f48
 )
 
