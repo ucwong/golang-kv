@@ -3,9 +3,9 @@ module github.com/ucwong/golang-kv
 go 1.18
 
 require (
-	github.com/dgraph-io/badger/v3 v3.0.0-20220429165824-bc74fea7d03b
-	github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
-	github.com/ucwong/go-ttlmap v1.0.2-0.20220531032643-ca9a390e2189
+	github.com/dgraph-io/badger/v3 v3.0.0-20220610215550-82b00f27e382
+	github.com/syndtr/goleveldb v1.0.1-0.20220613043529-9ab5d34ac1d8
+	github.com/ucwong/go-ttlmap v1.0.2-0.20220531033718-59436cfae99c
 	go.etcd.io/bbolt v1.3.7-0.20220226045046-fd5535f71f48
 )
 
@@ -23,7 +23,7 @@ require (
 	github.com/klauspost/compress v1.15.5 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	go.opencensus.io v0.23.0 // indirect
-	golang.org/x/net v0.0.0-20220526153639-5463443f8c37 // indirect
+	golang.org/x/net v0.0.0-20220607020251-c690dde0001d // indirect
 	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 )
