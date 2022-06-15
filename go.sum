@@ -131,8 +131,8 @@ github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/stretchr/testify v1.7.2 h1:4jaiDzPyXQvSd7D0EjG45355tLlV3VOECpq10pLC+8s=
 github.com/stretchr/testify v1.7.2/go.mod h1:R6va5+xMeoiuVRoj+gSkQ7d3FALtqAAGI1FQKckRals=
-github.com/syndtr/goleveldb v1.0.1-0.20220613043529-9ab5d34ac1d8 h1:SfPyLkLhgzNj9B0ROMxDtVLjN+Eq9ch9xY7HEmPPJDk=
-github.com/syndtr/goleveldb v1.0.1-0.20220613043529-9ab5d34ac1d8/go.mod h1:RRCYJbIwD5jmqPI9XoAFR0OcDxqUctll6zUj/+B4S48=
+github.com/syndtr/goleveldb v1.0.1-0.20220613111009-678c1e822a17 h1:llhz91d85B3Oy8gULXt3s4IbmWUEPDamF9sM77iamfg=
+github.com/syndtr/goleveldb v1.0.1-0.20220613111009-678c1e822a17/go.mod h1:RRCYJbIwD5jmqPI9XoAFR0OcDxqUctll6zUj/+B4S48=
 github.com/ucwong/go-ttlmap v1.0.2-0.20220531033718-59436cfae99c h1:XUfwabHnv4+wnmECgecCl0NUbVGmO5o4TqvzgQizLRA=
 github.com/ucwong/go-ttlmap v1.0.2-0.20220531033718-59436cfae99c/go.mod h1:f/uteIwsxpgNDjF4DAupetPvl9iL18owVCFCaQ67OEE=
 github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8/go.mod h1:VFNgLljTbGfSG7qAOspJ7OScBnGdDN/yBr0sguwnwf0=
