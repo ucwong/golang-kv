@@ -3,14 +3,13 @@ module github.com/ucwong/golang-kv
 go 1.18
 
 require (
-	github.com/dgraph-io/badger/v3 v3.0.0-20220610215550-82b00f27e382
-	github.com/syndtr/goleveldb v1.0.1-0.20220613111009-678c1e822a17
+	github.com/dgraph-io/badger/v3 v3.0.0-20220623163930-7d159dd923ac
+	github.com/syndtr/goleveldb v1.0.1-0.20220614013038-64ee5596c38a
 	github.com/ucwong/go-ttlmap v1.0.2-0.20220531033718-59436cfae99c
 	go.etcd.io/bbolt v1.3.7-0.20220226045046-fd5535f71f48
 )
 
 require (
-	github.com/cespare/xxhash v1.1.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/dgraph-io/ristretto v0.1.0 // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
