@@ -29,8 +29,12 @@ ha := kv.HA("")
 defer ha.Close()
 
 ...
-
 ```
+## Test
+```
+make test
+```
+
 # How to choose database engine
 ![image](https://user-images.githubusercontent.com/22344498/111969569-5aede600-8b35-11eb-8580-8cd1baf2bbb1.png)
 
