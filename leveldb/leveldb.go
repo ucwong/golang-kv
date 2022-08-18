@@ -32,6 +32,7 @@ import (
 type LevelDB struct {
 	engine  *leveldb.DB
 	ttl_map *ttlmap.Map
+	wb      *leveldb.Batch
 }
 
 func Open(path string) *LevelDB {
@@ -48,6 +49,7 @@ func Open(path string) *LevelDB {
 		return nil
 	}
 	db.engine = ldb
+	db.wb = new(leveldb.Batch)
 
 	options := &ttlmap.Options{
 		InitialCapacity: 1024 * 1024,
@@ -148,5 +150,8 @@ func (ldb *LevelDB) Close() error {
 }
 
 func (ldb *LevelDB) Batch(kvs map[string][]byte) error {
-	panic("Not support")
+	for k, v := range kvs {
+		ldb.wb.Put([]byte(k), v)
+	}
+	return ldb.engine.Write(ldb.wb, nil)
 }
