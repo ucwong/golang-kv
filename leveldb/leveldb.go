@@ -148,5 +148,5 @@ func (ldb *LevelDB) Close() error {
 }
 
 func (ldb *LevelDB) Batch(kvs map[string][]byte) error {
-	return nil
+	panic("Not support")
 }

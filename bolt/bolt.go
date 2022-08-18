@@ -213,5 +213,5 @@ func (b *Bolt) Close() error {
 }
 
 func (b *Bolt) Batch(kvs map[string][]byte) error {
-	return nil
+	panic("Not support")
 }

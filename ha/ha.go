@@ -265,5 +265,5 @@ func (b *Ha) Close() (err error) {
 }
 
 func (b *Ha) Batch(kvs map[string][]byte) error {
-	return nil
+	panic("Not support")
 }
