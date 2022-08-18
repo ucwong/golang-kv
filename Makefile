@@ -7,3 +7,9 @@ test:
 
 cover:
 	go tool cover -html=coverage.txt -o coverage.html
+
+clean:
+	go clean -cache
+	find . -name '.golang-kv' | xargs rm -rf
+	rm -rf coverage.html
+	rm -rf coverage.txt
