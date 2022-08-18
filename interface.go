@@ -29,4 +29,7 @@ type Bucket interface {
 	Range(start, limit []byte) [][]byte
 	SetTTL(k, v []byte, expire time.Duration) error
 	Close() error
+
+	// Batch write & flush
+	Batch(kvs map[string][]byte) error
 }

@@ -28,6 +28,7 @@ import (
 
 type Badger struct {
 	engine *badger.DB
+	wb     *badger.WriteBatch
 }
 
 func Open(path string) *Badger {
@@ -38,6 +39,7 @@ func Open(path string) *Badger {
 	//if bg, err := badger.Open(badger.DefaultOptions(path).WithCompression(options.ZSTD)); err == nil {
 	if bg, err := badger.Open(badger.DefaultOptions(path)); err == nil {
 		b.engine = bg
+		b.wb = bg.NewWriteBatch()
 	} else {
 		//panic(err)
 		return nil
@@ -150,4 +152,11 @@ func (b *Badger) Range(start, limit []byte) (res [][]byte) {
 
 func (b *Badger) Close() error {
 	return b.engine.Close()
+}
+
+func (b *Badger) Batch(kvs map[string][]byte) error {
+	for k, v := range kvs {
+		b.wb.Set([]byte(k), v)
+	}
+	return b.wb.Flush()
 }

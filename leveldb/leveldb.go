@@ -32,6 +32,7 @@ import (
 type LevelDB struct {
 	engine  *leveldb.DB
 	ttl_map *ttlmap.Map
+	wb      *leveldb.Batch
 }
 
 func Open(path string) *LevelDB {
@@ -48,6 +49,7 @@ func Open(path string) *LevelDB {
 		return nil
 	}
 	db.engine = ldb
+	db.wb = new(leveldb.Batch)
 
 	options := &ttlmap.Options{
 		InitialCapacity: 1024 * 1024,
@@ -145,4 +147,11 @@ func (ldb *LevelDB) SetTTL(k, v []byte, expire time.Duration) (err error) {
 func (ldb *LevelDB) Close() error {
 	ldb.ttl_map.Drain()
 	return ldb.engine.Close()
+}
+
+func (ldb *LevelDB) Batch(kvs map[string][]byte) error {
+	for k, v := range kvs {
+		ldb.wb.Put([]byte(k), v)
+	}
+	return ldb.engine.Write(ldb.wb, nil)
 }

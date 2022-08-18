@@ -211,3 +211,7 @@ func (b *Bolt) Close() error {
 	b.ttl_map.Drain()
 	return b.engine.Close()
 }
+
+func (b *Bolt) Batch(kvs map[string][]byte) error {
+	panic("Not support")
+}
