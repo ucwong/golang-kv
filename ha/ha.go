@@ -263,3 +263,7 @@ func (b *Ha) Close() (err error) {
 
 	return
 }
+
+func (b *Ha) Batch(kvs map[string][]byte) error {
+	return nil
+}

@@ -146,3 +146,7 @@ func (ldb *LevelDB) Close() error {
 	ldb.ttl_map.Drain()
 	return ldb.engine.Close()
 }
+
+func (ldb *LevelDB) Batch(kvs map[string][]byte) error {
+	return nil
+}
