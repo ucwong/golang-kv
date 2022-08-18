@@ -72,6 +72,10 @@ func badger1() {
 	kvs["batch3"] = []byte("batchv3")
 	kvs["batch4"] = []byte("batchv4")
 	db.Batch(kvs)
+	res = db.Prefix([]byte("batch"))
+	for _, i := range res {
+		fmt.Printf("prefix(batch)...%v...%s\n", len(res), string(i))
+	}
 	res = db.Scan()
 	for _, i := range res {
 		fmt.Printf("scan...%v...%s\n", len(res), string(i))
