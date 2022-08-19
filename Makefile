@@ -1,4 +1,4 @@
-.PHONY: all test cover
+.PHONY: all
 
 all: test cover
 
