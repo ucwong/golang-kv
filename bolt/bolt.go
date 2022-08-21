@@ -213,5 +213,13 @@ func (b *Bolt) Close() error {
 }
 
 func (b *Bolt) Batch(kvs map[string][]byte) error {
-	panic("Not support")
+	return b.engine.Batch(func(tx *bolt.Tx) error {
+		bucket := tx.Bucket([]byte(GLOBAL))
+		for k, v := range kvs {
+			if err := bucket.Put([]byte(k), v); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
 }
