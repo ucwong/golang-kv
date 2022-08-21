@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"sync"
+	//"sync"
 	"time"
 
 	"github.com/ucwong/go-ttlmap"
@@ -34,7 +34,7 @@ type Bolt struct {
 	engine  *bolt.DB
 	ttl_map *ttlmap.Map
 
-	once sync.Once
+	//once sync.Once
 }
 
 const GLOBAL = "m41gA7omIWU4s"
