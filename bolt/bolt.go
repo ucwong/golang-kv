@@ -186,6 +186,11 @@ func (b *Bolt) SetTTL(k, v []byte, expire time.Duration) (err error) {
 		return buk.Put(k, v)
 	})
 
+	if err != nil {
+		// TODO
+		b.ttl_map.Delete(string(k))
+	}
+
 	return
 }
 

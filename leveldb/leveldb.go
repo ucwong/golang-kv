@@ -141,6 +141,11 @@ func (ldb *LevelDB) SetTTL(k, v []byte, expire time.Duration) (err error) {
 
 	err = ldb.engine.Put(k, v, nil)
 
+	if err != nil {
+		// TODO
+		ldb.ttl_map.Delete(string(k))
+	}
+
 	return
 }
 
