@@ -19,6 +19,7 @@ import (
 	"bytes"
 	//"fmt"
 	"path/filepath"
+	"sync"
 	"time"
 
 	"github.com/syndtr/goleveldb/leveldb"
@@ -33,6 +34,7 @@ type LevelDB struct {
 	engine  *leveldb.DB
 	ttl_map *ttlmap.Map
 	wb      *leveldb.Batch
+	once    sync.Once
 }
 
 func Open(path string) *LevelDB {
@@ -150,7 +152,9 @@ func (ldb *LevelDB) SetTTL(k, v []byte, expire time.Duration) (err error) {
 }
 
 func (ldb *LevelDB) Close() error {
-	ldb.ttl_map.Drain()
+	ldb.once.Do(func() {
+		ldb.ttl_map.Drain()
+	})
 	return ldb.engine.Close()
 }
 
