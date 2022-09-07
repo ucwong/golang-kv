@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	//"sync"
+	"sync"
 	"time"
 
 	"github.com/ucwong/go-ttlmap"
@@ -34,7 +34,7 @@ type Bolt struct {
 	engine  *bolt.DB
 	ttl_map *ttlmap.Map
 
-	//once sync.Once
+	once sync.Once
 }
 
 const GLOBAL = "m41gA7omIWU4s"
@@ -107,7 +107,7 @@ func (b *Bolt) Set(k, v []byte) (err error) {
 
 func (b *Bolt) Del(k []byte) (err error) {
 	if _, err = b.ttl_map.Delete(string(k)); err != nil {
-		return err
+		return
 	}
 
 	err = b.engine.Update(func(tx *bolt.Tx) error {
@@ -213,7 +213,9 @@ func (b *Bolt) Range(start, limit []byte) (res [][]byte) {
 }
 
 func (b *Bolt) Close() error {
-	b.ttl_map.Drain()
+	b.once.Do(func() {
+		b.ttl_map.Drain()
+	})
 	return b.engine.Close()
 }
 

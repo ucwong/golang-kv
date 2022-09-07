@@ -46,7 +46,8 @@ func bolt1() {
 	db.Set([]byte("xxxyx"), []byte("xxxyx"))
 	db.Set([]byte("xyy"), []byte("xyy"))
 	db.SetTTL([]byte("ttlxxxyx"), []byte("ttlxxxyx"), 1000*time.Millisecond)
-	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 2000*time.Millisecond)
+	db.Set([]byte("ttlxxxyx"), []byte("ttlxxxyx"))
+	db.SetTTL([]byte("ttlxxxyx1"), []byte("ttlxxxyx1"), 200000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx2"), []byte("ttlxxxyx2"), 5000*time.Millisecond)
 	db.SetTTL([]byte("ttlxxxyx3"), []byte("ttlxxxyx3"), 5000*time.Millisecond)
 	for i := 0; i < batch; i++ {
@@ -119,5 +120,6 @@ func bolt1() {
 
 	f2 := db.Get([]byte("xxy"))
 	fmt.Printf("...........%s\n", string(f2))
+	fmt.Printf("Close func call\n")
 	db.Close()
 }
