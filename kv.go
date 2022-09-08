@@ -18,7 +18,6 @@ package kv
 import (
 	"github.com/ucwong/golang-kv/badger"
 	"github.com/ucwong/golang-kv/bolt"
-	"github.com/ucwong/golang-kv/ha"
 	"github.com/ucwong/golang-kv/leveldb"
 )
 
@@ -32,8 +31,4 @@ func Bolt(path string) Bucket {
 
 func LevelDB(path string) Bucket {
 	return leveldb.Open(path)
-}
-
-func HA(path string, level int) Bucket {
-	return ha.Open(path, level)
 }

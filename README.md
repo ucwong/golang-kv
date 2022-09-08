@@ -44,9 +44,6 @@ bolt.setTTL([]byte("k"), []byte("v"), time.Second)
 ldb := kv.LevelDB("")
 defer ldb.Close()
 
-ha := kv.HA("")
-defer ha.Close()
-
 ...
 ```
 ## Test
