@@ -1,5 +1,5 @@
 # Golang-kv
-Bundle embedded databases with fixed api
+Bundle embedded databases with fixed api https://pkg.go.dev/github.com/ucwong/golang-kv
 
 Interfaces
 
