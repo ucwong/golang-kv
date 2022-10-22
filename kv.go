@@ -21,14 +21,14 @@ import (
 	"github.com/ucwong/golang-kv/leveldb"
 )
 
-func Badger(path string) Bucket {
-	return badger.Open(path)
+func Badger(path string, opt ...badger.BadgerOption) Bucket {
+	return badger.Open(path, opt...)
 }
 
-func Bolt(path string) Bucket {
+func Bolt(path string, opt ...bolt.BoltOption) Bucket {
 	return bolt.Open(path)
 }
 
-func LevelDB(path string) Bucket {
+func LevelDB(path string, opt ...leveldb.LevelDBOption) Bucket {
 	return leveldb.Open(path)
 }
