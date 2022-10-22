@@ -26,9 +26,9 @@ func Badger(path string, opt ...badger.BadgerOption) Bucket {
 }
 
 func Bolt(path string, opt ...bolt.BoltOption) Bucket {
-	return bolt.Open(path)
+	return bolt.Open(path, opt...)
 }
 
 func LevelDB(path string, opt ...leveldb.LevelDBOption) Bucket {
-	return leveldb.Open(path)
+	return leveldb.Open(path, opt...)
 }
