@@ -137,8 +137,8 @@ github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8/go.mod h1:VFNgLljT
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
-go.etcd.io/bbolt v1.3.7-0.20230118001253-8c794d23aa46 h1:yO1dbiBpt98W8sqfFcaLm6ypBKbxXNhaNkeyLw11Emg=
-go.etcd.io/bbolt v1.3.7-0.20230118001253-8c794d23aa46/go.mod h1:LCDmrWzQ7imVDUHCu/pmQMM4rA7LdzZbNYKJG9BfvXI=
+go.etcd.io/bbolt v1.3.7-0.20230119182115-774edab6231c h1:StnfauJLVOpZZ2FSHtKy2e/fmNxMQPFOASqvm6ILhCw=
+go.etcd.io/bbolt v1.3.7-0.20230119182115-774edab6231c/go.mod h1:ST3lVo6pGC0/V0dNQISHzSOryktWb7f7UiQIJS9u2+o=
 go.opencensus.io v0.22.5/go.mod h1:5pWMHQbX5EPX2/62yrJeAkowc+lfs/XD7Uxpq3pI6kk=
 go.opencensus.io v0.24.0 h1:y73uSU6J157QMP2kn2r30vwW1A2W2WFwSCGnAVxeaD0=
 go.opencensus.io v0.24.0/go.mod h1:vNK8G9p7aAivkbmorf4v+7Hgx+Zs0yY+0fOtgBfjQKo=
