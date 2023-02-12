@@ -81,7 +81,7 @@ func (ldb *LevelDB) Get(k []byte) (v []byte) {
 		return []byte(item.Value().(string))
 	}
 
-	v, _ := ldb.engine.Get(k, nil)
+	v, _ = ldb.engine.Get(k, nil)
 	return
 }
 
