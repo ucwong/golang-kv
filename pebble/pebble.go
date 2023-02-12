@@ -174,5 +174,6 @@ func (peb *Pebble) BatchSet(kvs map[string][]byte) error {
 	for k, v := range kvs {
 		peb.wb.Set([]byte(k), v, nil)
 	}
-	return peb.engine.Flush()
+	peb.engine.Apply(peb.wb, nil)
+	return peb.wb.SyncWait()
 }
