@@ -37,23 +37,17 @@ type Pebble struct {
 type PebbleOption func(pebble.Options) pebble.Options
 
 func Open(path string, opts ...PebbleOption) *Pebble {
-	//if len(path) == 0 {
 	path = filepath.Join(path, common.GLOBAL_SPACE, ".pebble")
-	//}
 	db := &Pebble{}
 	option := pebble.Options{}
 	for _, op := range opts {
 		option = op(option)
 	}
-	ldb, err := pebble.Open(path, &option)
-	//if _, iscorrupted := err.(*errors.ErrCorrupted); iscorrupted {
-	//	ldb, err = pebble.RecoverFile(path, nil)
-	//}
+	peb, err := pebble.Open(path, &option)
 	if err != nil {
-		//panic(err)
 		return nil
 	}
-	db.engine = ldb
+	db.engine = peb
 	db.wb = new(pebble.Batch)
 
 	options := &ttlmap.Options{
@@ -72,38 +66,38 @@ func Open(path string, opts ...PebbleOption) *Pebble {
 	return db
 }
 
-func (ldb *Pebble) Get(k []byte) (v []byte) {
-	item, err := ldb.ttl_map.Get(string(k))
+func (peb *Pebble) Get(k []byte) (v []byte) {
+	item, err := peb.ttl_map.Get(string(k))
 	if err == nil {
 		return []byte(item.Value().(string))
 	}
 
-	v, closer, err := ldb.engine.Get(k)
+	v, closer, err := peb.engine.Get(k)
 	if err == nil {
 		defer closer.Close()
 	}
 	return
 }
 
-func (ldb *Pebble) Set(k, v []byte) (err error) {
-	if _, err = ldb.ttl_map.Delete(string(k)); err != nil {
+func (peb *Pebble) Set(k, v []byte) (err error) {
+	if _, err = peb.ttl_map.Delete(string(k)); err != nil {
 		return
 	}
 
-	err = ldb.engine.Set(k, v, pebble.Sync)
+	err = peb.engine.Set(k, v, pebble.Sync)
 	return
 }
 
-func (ldb *Pebble) Del(k []byte) (err error) {
-	if _, err = ldb.ttl_map.Delete(string(k)); err != nil {
+func (peb *Pebble) Del(k []byte) (err error) {
+	if _, err = peb.ttl_map.Delete(string(k)); err != nil {
 		return
 	}
 
-	err = ldb.engine.Delete(k, nil)
+	err = peb.engine.Delete(k, nil)
 	return
 }
 
-func (ldb *Pebble) Prefix(k []byte) (res [][]byte) {
+func (peb *Pebble) Prefix(k []byte) (res [][]byte) {
 	keyUpperBound := func(b []byte) []byte {
 		end := make([]byte, len(b))
 		copy(end, b)
@@ -122,7 +116,7 @@ func (ldb *Pebble) Prefix(k []byte) (res [][]byte) {
 		}
 	}
 
-	iter := ldb.engine.NewIter(prefixIterOptions(k))
+	iter := peb.engine.NewIter(prefixIterOptions(k))
 	defer iter.Close()
 	for iter.First(); iter.Valid(); iter.Next() {
 		res = append(res, common.SafeCopy(nil, iter.Value()))
@@ -130,8 +124,8 @@ func (ldb *Pebble) Prefix(k []byte) (res [][]byte) {
 	return
 }
 
-func (ldb *Pebble) Suffix(k []byte) (res [][]byte) {
-	iter := ldb.engine.NewIter(nil)
+func (peb *Pebble) Suffix(k []byte) (res [][]byte) {
+	iter := peb.engine.NewIter(nil)
 	defer iter.Close()
 	for iter.First(); iter.Valid(); iter.Next() {
 		if bytes.HasSuffix(iter.Key(), k) {
@@ -141,44 +135,44 @@ func (ldb *Pebble) Suffix(k []byte) (res [][]byte) {
 	return
 }
 
-func (ldb *Pebble) Range(start, limit []byte) (res [][]byte) {
+func (peb *Pebble) Range(start, limit []byte) (res [][]byte) {
 	return
 }
 
-func (ldb *Pebble) Scan() (res [][]byte) {
-	iter := ldb.engine.NewIter(nil)
+func (peb *Pebble) Scan() (res [][]byte) {
+	iter := peb.engine.NewIter(nil)
 	defer iter.Close()
-	for iter.Next() {
+	for iter.First(); iter.Valid(); iter.Next() {
 		res = append(res, common.SafeCopy(nil, iter.Value()))
 	}
 	return
 }
 
-func (ldb *Pebble) SetTTL(k, v []byte, expire time.Duration) (err error) {
-	if err = ldb.ttl_map.Set(string(k), ttlmap.NewItem(string(v), ttlmap.WithTTL(expire)), nil); err != nil {
+func (peb *Pebble) SetTTL(k, v []byte, expire time.Duration) (err error) {
+	if err = peb.ttl_map.Set(string(k), ttlmap.NewItem(string(v), ttlmap.WithTTL(expire)), nil); err != nil {
 		return
 	}
 
-	err = ldb.engine.Set(k, v, pebble.Sync)
+	err = peb.engine.Set(k, v, pebble.Sync)
 
 	if err != nil {
 		// TODO
-		ldb.ttl_map.Delete(string(k))
+		peb.ttl_map.Delete(string(k))
 	}
 
 	return
 }
 
-func (ldb *Pebble) Close() error {
-	ldb.once.Do(func() {
-		ldb.ttl_map.Drain()
+func (peb *Pebble) Close() error {
+	peb.once.Do(func() {
+		peb.ttl_map.Drain()
 	})
-	return ldb.engine.Close()
+	return peb.engine.Close()
 }
 
-func (ldb *Pebble) BatchSet(kvs map[string][]byte) error {
+func (peb *Pebble) BatchSet(kvs map[string][]byte) error {
 	for k, v := range kvs {
-		ldb.wb.Set([]byte(k), v, nil)
+		peb.wb.Set([]byte(k), v, nil)
 	}
-	return ldb.engine.Flush()
+	return peb.engine.Flush()
 }
