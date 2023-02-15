@@ -139,7 +139,11 @@ func (peb *Pebble) Range(start, limit []byte) (res [][]byte) {
 	iter := peb.engine.NewIter(nil)
 	defer iter.Close()
 	for iter.SeekGEWithLimit(start, limit); iter.Valid(); iter.Next() {
-		res = append(res, common.SafeCopy(nil, iter.Value()))
+		if bytes.Compare(limit, iter.Key()) > 0 {
+			res = append(res, common.SafeCopy(nil, iter.Value()))
+		} else {
+			break
+		}
 	}
 	return
 }
