@@ -80,9 +80,9 @@ func (peb *Pebble) Get(k []byte) (v []byte) {
 }
 
 func (peb *Pebble) Set(k, v []byte) (err error) {
-	if _, err = peb.ttl_map.Delete(string(k)); err != nil {
-		return
-	}
+	//if _, err = peb.ttl_map.Delete(string(k)); err != nil {
+	//	return
+	//}
 
 	err = peb.engine.Set(k, v, pebble.Sync)
 	return
@@ -136,6 +136,11 @@ func (peb *Pebble) Suffix(k []byte) (res [][]byte) {
 }
 
 func (peb *Pebble) Range(start, limit []byte) (res [][]byte) {
+	iter := peb.engine.NewIter(nil)
+	defer iter.Close()
+	for iter.SeekGEWithLimit(start, limit); iter.Valid(); iter.Next() {
+		res = append(res, common.SafeCopy(nil, iter.Value()))
+	}
 	return
 }
 
