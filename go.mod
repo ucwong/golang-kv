@@ -3,11 +3,11 @@ module github.com/ucwong/golang-kv
 go 1.19
 
 require (
-	github.com/cockroachdb/pebble v0.0.0-20230303212937-fdf055ddb6e4
+	github.com/cockroachdb/pebble v0.0.0-20230306180248-e9a8c4ad65c5
 	github.com/dgraph-io/badger/v3 v3.0.0-20221216181207-499b1424621c
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
-	go.etcd.io/bbolt v1.3.7-0.20230227222518-1273ac779e75
+	go.etcd.io/bbolt v1.3.7-0.20230306170754-17b18580c7f3
 )
 
 require (
@@ -38,6 +38,6 @@ require (
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/exp v0.0.0-20200513190911-00229845015e // indirect
 	golang.org/x/net v0.4.0 // indirect
-	golang.org/x/sys v0.5.0 // indirect
+	golang.org/x/sys v0.6.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 )
