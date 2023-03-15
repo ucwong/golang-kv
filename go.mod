@@ -1,6 +1,6 @@
 module github.com/ucwong/golang-kv
 
-go 1.19
+go 1.20
 
 require (
 	github.com/cockroachdb/pebble v0.0.0-20230315164519-c9f3b74fdb9a
