@@ -384,8 +384,8 @@ github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9de
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
-go.etcd.io/bbolt v1.3.7-0.20230320223728-9c5eaa954d13 h1:eyCo4JVAO3UEXIzBzoKzOamzIXG3zOsAtiJyYHbb4FU=
-go.etcd.io/bbolt v1.3.7-0.20230320223728-9c5eaa954d13/go.mod h1:Hasaq8BqDciVWnhJ8fOQ1GOVILInT+g29N4LU0zUYq8=
+go.etcd.io/bbolt v1.3.7-0.20230323020640-b027d197038f h1:WP2QxopoL62bqCrKJ/AJXDqWYsWOFxcXQ/FQVbuwStE=
+go.etcd.io/bbolt v1.3.7-0.20230323020640-b027d197038f/go.mod h1:Hasaq8BqDciVWnhJ8fOQ1GOVILInT+g29N4LU0zUYq8=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=
 go.opencensus.io v0.22.2/go.mod h1:yxeiOL68Rb0Xd1ddK5vPZ/oVn4vY4Ynel7k9FzqtOIw=
