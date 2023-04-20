@@ -7,7 +7,7 @@ require (
 	github.com/dgraph-io/badger/v4 v4.0.2-0.20230411083900-1bbd08dd2637
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
-	go.etcd.io/bbolt v1.3.7-0.20230418055307-f15324181db4
+	go.etcd.io/bbolt v1.3.7-0.20230420101743-3bd92600410c
 )
 
 require (
