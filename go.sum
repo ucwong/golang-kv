@@ -29,8 +29,8 @@ github.com/cockroachdb/errors v1.9.1/go.mod h1:2sxOtL2WIc096WSZqZ5h8fa17rdDq9HZO
 github.com/cockroachdb/logtags v0.0.0-20211118104740-dabe8e521a4f/go.mod h1:Vz9DsVWQQhf3vs21MhPMZpMGSht7O/2vFW2xusFUVOs=
 github.com/cockroachdb/logtags v0.0.0-20230118201751-21c54148d20b h1:r6VH0faHjZeQy818SGhaone5OnYfxFR/+AzdY3sf5aE=
 github.com/cockroachdb/logtags v0.0.0-20230118201751-21c54148d20b/go.mod h1:Vz9DsVWQQhf3vs21MhPMZpMGSht7O/2vFW2xusFUVOs=
-github.com/cockroachdb/pebble v0.0.0-20230510135629-fe7ae7a62e0f h1:NQ2CYGSQoozmZlh8Md436mTqO7B0DNFgeitYw7Gn0LU=
-github.com/cockroachdb/pebble v0.0.0-20230510135629-fe7ae7a62e0f/go.mod h1:TkdVsGYRqtULUppt2RbC+YaKtTHnHoWa2apfFrSKABw=
+github.com/cockroachdb/pebble v0.0.0-20230512205950-e9005aede63f h1:iU13wUVbyYhZpxTuioHXEReX6SvBCXwo1DXhSgr08Lc=
+github.com/cockroachdb/pebble v0.0.0-20230512205950-e9005aede63f/go.mod h1:TkdVsGYRqtULUppt2RbC+YaKtTHnHoWa2apfFrSKABw=
 github.com/cockroachdb/redact v1.1.3 h1:AKZds10rFSIj7qADf0g46UixK8NNLwWTNdCIGS5wfSQ=
 github.com/cockroachdb/redact v1.1.3/go.mod h1:BVNblN9mBWFyMyqK1k3AAiSxhvhfK2oOZZ2lK+dpvRg=
 github.com/codegangsta/inject v0.0.0-20150114235600-33e0aa1cb7c0/go.mod h1:4Zcjuz89kmFXt9morQgcfYZAYZ5n8WHjt81YYWIwtTM=
