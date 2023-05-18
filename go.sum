@@ -280,8 +280,8 @@ github.com/yudai/pp v2.0.1+incompatible/go.mod h1:PuxR/8QJ7cyCkFp/aUDS+JY727OFEZ
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
-go.etcd.io/bbolt v1.3.7-0.20230517031108-53ce8c103d17 h1:NybMHM2Y4YM0X1eNwBVbGkysCMvI61aySWPXX4n7g1o=
-go.etcd.io/bbolt v1.3.7-0.20230517031108-53ce8c103d17/go.mod h1:Gpl72SbxgstRmiprmz97EAQ8YY0qrKG6jHQEVYP+DKY=
+go.etcd.io/bbolt v1.3.7-0.20230518005001-07579acf0c9a h1:ujWV+qUt0smDnhcCocmcKP3ZlxSp4AiZeP1rkN0qU7I=
+go.etcd.io/bbolt v1.3.7-0.20230518005001-07579acf0c9a/go.mod h1:Gpl72SbxgstRmiprmz97EAQ8YY0qrKG6jHQEVYP+DKY=
 go.opencensus.io v0.24.0 h1:y73uSU6J157QMP2kn2r30vwW1A2W2WFwSCGnAVxeaD0=
 go.opencensus.io v0.24.0/go.mod h1:vNK8G9p7aAivkbmorf4v+7Hgx+Zs0yY+0fOtgBfjQKo=
 golang.org/x/crypto v0.0.0-20181203042331-505ab145d0a9/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
