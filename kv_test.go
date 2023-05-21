@@ -278,7 +278,7 @@ func nutsdb1() {
 
 	db = NutsDB("")
 	if db == nil {
-		panic("bolt create err")
+		panic("nutsdb create err")
 	}
 	db.Set([]byte("yx"), []byte("yx"))
 	db.Set([]byte("yy"), []byte("yy"))
