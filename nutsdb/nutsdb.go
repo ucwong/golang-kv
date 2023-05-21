@@ -19,7 +19,6 @@ import (
 	"bytes"
 	"os"
 	"path/filepath"
-	"sync"
 	"time"
 
 	"github.com/ucwong/golang-kv/common"
@@ -29,8 +28,6 @@ import (
 
 type NutsDB struct {
 	engine *nutsdb.DB
-
-	once sync.Once
 }
 
 const GLOBAL = "m41gA7omIWU4s"
@@ -140,7 +137,7 @@ func (b *NutsDB) Scan() (res [][]byte) {
 
 func (b *NutsDB) SetTTL(k, v []byte, expire time.Duration) (err error) {
 	err = b.engine.Update(func(tx *nutsdb.Tx) error {
-		if err := tx.Put(GLOBAL, k, v, uint32(expire)); err != nil {
+		if err := tx.Put(GLOBAL, k, v, uint32(expire.Seconds())); err != nil {
 			return err
 		}
 		return nil
