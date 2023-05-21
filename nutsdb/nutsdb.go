@@ -17,8 +17,6 @@ package nutsdb
 
 import (
 	"bytes"
-	//"fmt"
-	"fmt"
 	"os"
 	"path/filepath"
 	"sync"
@@ -44,7 +42,6 @@ func Open(path string, opts ...NutsdbOption) *NutsDB {
 	path = filepath.Join(path, common.GLOBAL_SPACE, ".nuts")
 	err := os.MkdirAll(path, 0777) //os.FileMode(os.ModePerm))
 	if err != nil {
-		fmt.Println(err)
 		return nil
 	}
 	//}
@@ -66,9 +63,6 @@ func Open(path string, opts ...NutsdbOption) *NutsDB {
 
 func (b *NutsDB) Get(k []byte) (v []byte) {
 	b.engine.View(func(tx *nutsdb.Tx) error {
-		//if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
-		//	v = buk.Get(k)
-		//}
 		if e, err := tx.Get(GLOBAL, k); err != nil {
 			return err
 		} else {
@@ -87,10 +81,6 @@ func (b *NutsDB) Set(k, v []byte) (err error) {
 
 func (b *NutsDB) Del(k []byte) (err error) {
 	err = b.engine.Update(func(tx *nutsdb.Tx) error {
-		/*if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
-			return buk.Delete(k)
-		}
-		return nil*/
 		return tx.Delete(GLOBAL, k)
 	})
 
@@ -99,20 +89,13 @@ func (b *NutsDB) Del(k []byte) (err error) {
 
 func (b *NutsDB) Prefix(prefix []byte) (res [][]byte) {
 	b.engine.View(func(tx *nutsdb.Tx) error {
-		//if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
-		//c := buk.Cursor()
-		//or k, v := c.Seek(prefix); k != nil && bytes.HasPrefix(k, prefix); k, v = c.Next() {
-		//	res = append(res, common.SafeCopy(nil, v))
-		//}
 		if entries, _, err := tx.PrefixScan(GLOBAL, prefix, 25, 100); err != nil {
 			return err
 		} else {
 			for _, entry := range entries {
-				fmt.Println(string(entry.Key), string(entry.Value))
 				res = append(res, common.SafeCopy(nil, entry.Value))
 			}
 		}
-		//}
 
 		return nil
 	})
@@ -122,14 +105,6 @@ func (b *NutsDB) Prefix(prefix []byte) (res [][]byte) {
 
 func (b *NutsDB) Suffix(suffix []byte) (res [][]byte) {
 	b.engine.View(func(tx *nutsdb.Tx) error {
-		/*if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
-			buk.ForEach(func(k, v []byte) error {
-				if bytes.HasSuffix(k, suffix) {
-					res = append(res, common.SafeCopy(nil, v))
-				}
-				return nil
-			})
-		}*/
 		entries, err := tx.GetAll(GLOBAL)
 		if err != nil {
 			return err
@@ -149,12 +124,6 @@ func (b *NutsDB) Suffix(suffix []byte) (res [][]byte) {
 
 func (b *NutsDB) Scan() (res [][]byte) {
 	b.engine.View(func(tx *nutsdb.Tx) error {
-		/*if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
-			buk.ForEach(func(k, v []byte) error {
-				res = append(res, common.SafeCopy(nil, v))
-				return nil
-			})
-		}*/
 		entries, err := tx.GetAll(GLOBAL)
 		if err != nil {
 			return err
@@ -171,11 +140,6 @@ func (b *NutsDB) Scan() (res [][]byte) {
 
 func (b *NutsDB) SetTTL(k, v []byte, expire time.Duration) (err error) {
 	err = b.engine.Update(func(tx *nutsdb.Tx) error {
-		/*buk, e := tx.CreateBucketIfNotExists([]byte(GLOBAL))
-		if e != nil {
-			return e
-		}
-		return buk.Put(k, v)*/
 		if err := tx.Put(GLOBAL, k, v, uint32(expire)); err != nil {
 			return err
 		}
@@ -187,21 +151,10 @@ func (b *NutsDB) SetTTL(k, v []byte, expire time.Duration) (err error) {
 
 func (b *NutsDB) Range(start, limit []byte) (res [][]byte) {
 	b.engine.View(func(tx *nutsdb.Tx) error {
-		/*if buk := tx.Bucket([]byte(GLOBAL)); buk != nil {
-			c := buk.Cursor()
-			for k, v := c.Seek(start); k != nil && bytes.Compare(start, k) <= 0; k, v = c.Next() {
-				if bytes.Compare(limit, k) > 0 {
-					res = append(res, common.SafeCopy(nil, v))
-				} else {
-					break
-				}
-			}
-		}*/
 		if entries, err := tx.RangeScan(GLOBAL, start, limit); err != nil {
 			return err
 		} else {
 			for _, entry := range entries {
-				//fmt.Println(string(entry.Key), string(entry.Value))
 				res = append(res, common.SafeCopy(nil, entry.Value))
 			}
 		}
@@ -216,15 +169,6 @@ func (b *NutsDB) Close() error {
 }
 
 func (b *NutsDB) BatchSet(kvs map[string][]byte) error {
-	/*return b.engine.Batch(func(tx *nutsdb.Tx) error {
-		bucket := tx.Bucket([]byte(GLOBAL))
-		for k, v := range kvs {
-			if err := bucket.Put([]byte(k), v); err != nil {
-				return err
-			}
-		}
-		return nil
-	})*/
 	err := b.engine.Update(func(tx *nutsdb.Tx) error {
 		for k, v := range kvs {
 			if err := tx.Put(GLOBAL, []byte(k), v, 0); err != nil {
