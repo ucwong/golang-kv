@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/cockroachdb/pebble v0.0.0-20230519195609-e892f45bc7e2
 	github.com/dgraph-io/badger/v4 v4.0.2-0.20230519043050-44b59785a8cd
+	github.com/nutsdb/nutsdb v0.12.3-0.20230521084054-b0a6e1ba0c39
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
 	go.etcd.io/bbolt v1.3.7-0.20230518005001-07579acf0c9a
@@ -13,6 +14,7 @@ require (
 require (
 	github.com/DataDog/zstd v1.5.2 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
+	github.com/bwmarrin/snowflake v0.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/cockroachdb/errors v1.9.1 // indirect
 	github.com/cockroachdb/logtags v0.0.0-20230118201751-21c54148d20b // indirect
@@ -36,6 +38,8 @@ require (
 	github.com/prometheus/common v0.42.0 // indirect
 	github.com/prometheus/procfs v0.9.0 // indirect
 	github.com/rogpeppe/go-internal v1.10.0 // indirect
+	github.com/xujiajun/mmap-go v1.0.1 // indirect
+	github.com/xujiajun/utils v0.0.0-20220904132955-5f7c5b914235 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/exp v0.0.0-20230321023759-10a507213a29 // indirect
 	golang.org/x/net v0.8.0 // indirect
