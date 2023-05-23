@@ -3,12 +3,12 @@ module github.com/ucwong/golang-kv
 go 1.20
 
 require (
-	github.com/cockroachdb/pebble v0.0.0-20230522192619-7a5a70ca34f5
+	github.com/cockroachdb/pebble v0.0.0-20230523215131-25a8e9bb8d95
 	github.com/dgraph-io/badger/v4 v4.0.2-0.20230519043050-44b59785a8cd
 	github.com/nutsdb/nutsdb v0.12.3-0.20230521084054-b0a6e1ba0c39
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
-	go.etcd.io/bbolt v1.3.7-0.20230522234353-d5339652fb36
+	go.etcd.io/bbolt v1.3.7-0.20230523213636-4fc92dedc495
 )
 
 require (
