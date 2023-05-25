@@ -3,7 +3,7 @@ module github.com/ucwong/golang-kv
 go 1.20
 
 require (
-	github.com/cockroachdb/pebble v0.0.0-20230525135702-4ca2bec55d11
+	github.com/cockroachdb/pebble v0.0.0-20230525220056-bb4fc9527b3b
 	github.com/dgraph-io/badger/v4 v4.0.2-0.20230519043050-44b59785a8cd
 	github.com/nutsdb/nutsdb v0.12.3-0.20230521084054-b0a6e1ba0c39
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
