@@ -8,7 +8,7 @@ require (
 	github.com/nutsdb/nutsdb v0.12.3-0.20230521084054-b0a6e1ba0c39
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
-	go.etcd.io/bbolt v1.3.7-0.20230524075710-504e7be72c35
+	go.etcd.io/bbolt v1.3.7-0.20230526115109-053fd189c85c
 )
 
 require (
