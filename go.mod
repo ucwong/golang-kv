@@ -3,12 +3,12 @@ module github.com/ucwong/golang-kv
 go 1.20
 
 require (
-	github.com/cockroachdb/pebble v0.0.0-20230614191204-17e0ab3c2e0e
+	github.com/cockroachdb/pebble v0.0.0-20230615190452-047380b92d76
 	github.com/dgraph-io/badger/v4 v4.0.2-0.20230612214140-c903578894e4
-	github.com/nutsdb/nutsdb v0.12.3-0.20230521084054-b0a6e1ba0c39
+	github.com/nutsdb/nutsdb v0.12.3-0.20230615013224-3ed1f785655a
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
-	go.etcd.io/bbolt v1.3.7-0.20230612213432-e79ff5f73ddb
+	go.etcd.io/bbolt v1.3.7-0.20230615152338-8ebdaf8d2ca9
 )
 
 require (
@@ -19,6 +19,7 @@ require (
 	github.com/cockroachdb/errors v1.9.1 // indirect
 	github.com/cockroachdb/logtags v0.0.0-20230118201751-21c54148d20b // indirect
 	github.com/cockroachdb/redact v1.1.4 // indirect
+	github.com/cockroachdb/tokenbucket v0.0.0-20230613231145-182959a1fad6 // indirect
 	github.com/dgraph-io/ristretto v0.1.1 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/getsentry/sentry-go v0.21.0 // indirect
