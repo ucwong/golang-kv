@@ -124,12 +124,12 @@ func (rdb *RoseDB) Range(start, limit []byte) (res [][]byte) {
 	iterOptions := rosedb.DefaultIteratorOptions
 	iter := rdb.engine.NewIterator(iterOptions)
 	defer iter.Close()
-	for ; iter.Valid(); iter.Next() {
+	for iter.Seek(start); iter.Valid(); iter.Next() {
 		if bytes.Compare(limit, iter.Key()) > 0 && bytes.Compare(start, iter.Key()) <= 0 {
 			val, _ := iter.Value()
 			res = append(res, common.SafeCopy(nil, val))
 		} else {
-			//break
+			break
 		}
 	}
 	return
