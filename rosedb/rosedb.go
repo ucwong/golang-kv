@@ -17,7 +17,6 @@ package rosedb
 
 import (
 	"bytes"
-	"fmt"
 	"path/filepath"
 	"sync"
 	"time"
@@ -80,9 +79,7 @@ func (rdb *RoseDB) Set(k, v []byte) (err error) {
 	//	return
 	//}
 
-	fmt.Println("Set begine")
 	err = rdb.engine.Put(k, v)
-	fmt.Println("Set ends")
 	return
 }
 
