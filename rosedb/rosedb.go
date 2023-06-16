@@ -1,4 +1,4 @@
-// Copyright (C) 2022 ucwong
+// Copyright (C) 2023 ucwong
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,8 +30,7 @@ import (
 type RoseDB struct {
 	engine  *rosedb.DB
 	ttl_map *ttlmap.Map
-	//wb      *rosedb.Batch
-	once sync.Once
+	once    sync.Once
 }
 
 type RoseDBOption func(rosedb.Options) rosedb.Options
@@ -49,7 +48,6 @@ func Open(path string, opts ...RoseDBOption) *RoseDB {
 		return nil
 	}
 	db.engine = rdb
-	//db.wb = rdb.NewBatch(rosedb.DefaultBatchOptions)
 
 	options := &ttlmap.Options{
 		InitialCapacity: 1024 * 1024,
@@ -123,6 +121,17 @@ func (rdb *RoseDB) Suffix(k []byte) (res [][]byte) {
 }
 
 func (rdb *RoseDB) Range(start, limit []byte) (res [][]byte) {
+	iterOptions := rosedb.DefaultIteratorOptions
+	iter := rdb.engine.NewIterator(iterOptions)
+	defer iter.Close()
+	for ; iter.Valid(); iter.Next() {
+		if bytes.Compare(limit, iter.Key()) > 0 && bytes.Compare(start, iter.Key()) <= 0 {
+			val, _ := iter.Value()
+			res = append(res, common.SafeCopy(nil, val))
+		} else {
+			//break
+		}
+	}
 	return
 }
 
