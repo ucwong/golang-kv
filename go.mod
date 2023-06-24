@@ -3,9 +3,9 @@ module github.com/ucwong/golang-kv
 go 1.20
 
 require (
-	github.com/cockroachdb/pebble v0.0.0-20230622193631-b77606f72b19
+	github.com/cockroachdb/pebble v0.0.0-20230623143751-975fbcb07b92
 	github.com/dgraph-io/badger/v4 v4.0.2-0.20230612214140-c903578894e4
-	github.com/nutsdb/nutsdb v0.12.3-0.20230616011030-aa141e49591d
+	github.com/nutsdb/nutsdb v0.12.3
 	github.com/rosedblabs/rosedb/v2 v2.2.0
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
@@ -13,7 +13,7 @@ require (
 )
 
 require (
-	github.com/DataDog/zstd v1.5.5 // indirect
+	github.com/DataDog/zstd v1.5.6-0.20230622172052-ea68dcab66c0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bwmarrin/snowflake v0.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
