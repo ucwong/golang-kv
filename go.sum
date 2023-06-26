@@ -32,8 +32,8 @@ github.com/cockroachdb/errors v1.9.1/go.mod h1:2sxOtL2WIc096WSZqZ5h8fa17rdDq9HZO
 github.com/cockroachdb/logtags v0.0.0-20211118104740-dabe8e521a4f/go.mod h1:Vz9DsVWQQhf3vs21MhPMZpMGSht7O/2vFW2xusFUVOs=
 github.com/cockroachdb/logtags v0.0.0-20230118201751-21c54148d20b h1:r6VH0faHjZeQy818SGhaone5OnYfxFR/+AzdY3sf5aE=
 github.com/cockroachdb/logtags v0.0.0-20230118201751-21c54148d20b/go.mod h1:Vz9DsVWQQhf3vs21MhPMZpMGSht7O/2vFW2xusFUVOs=
-github.com/cockroachdb/pebble v0.0.0-20230623143751-975fbcb07b92 h1:ZIuBNz6DBiHzZHpOW8stlOT9UFWyBjfhRXBbFiie8z0=
-github.com/cockroachdb/pebble v0.0.0-20230623143751-975fbcb07b92/go.mod h1:0U2u2L89OHWOFepj3A1huHpdfogUnN1LzqS3LNvKq1Q=
+github.com/cockroachdb/pebble v0.0.0-20230626202224-a0706e59b52c h1:YREHQ1f+4/YJmkm0GoN9dHYq9UhwlbkOe2b4jiO7saQ=
+github.com/cockroachdb/pebble v0.0.0-20230626202224-a0706e59b52c/go.mod h1:FN5O47SBEz5+kO9fG8UTR64g2WS1u5ZFCgTvxGjoSks=
 github.com/cockroachdb/redact v1.1.3/go.mod h1:BVNblN9mBWFyMyqK1k3AAiSxhvhfK2oOZZ2lK+dpvRg=
 github.com/cockroachdb/redact v1.1.4 h1:Y0XrVI2FAyofNyGveodTN//qdpPtFKcKTeCBsK3AHAQ=
 github.com/cockroachdb/redact v1.1.4/go.mod h1:BVNblN9mBWFyMyqK1k3AAiSxhvhfK2oOZZ2lK+dpvRg=
@@ -243,8 +243,8 @@ github.com/rogpeppe/go-internal v1.10.0 h1:TMyTOH3F/DB16zRVcYyreMH6GnZZrwQVAoYjR
 github.com/rogpeppe/go-internal v1.10.0/go.mod h1:UQnix2H7Ngw/k4C5ijL5+65zddjncjaFoBhdsK/akog=
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90 h1:AeuxZLgpVnxCjR6mvRJiDQATgOeSme59HX/rWCBjjvw=
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90/go.mod h1:Hk7adp95/ngEfetvapVWdgneuZb15mi9nH/keSH/KqI=
-github.com/rosedblabs/rosedb/v2 v2.2.0 h1:+fCLWV6V7TX2QJ2RHJq2WSrHFFADvyxmqZ9ZNyda4+Q=
-github.com/rosedblabs/rosedb/v2 v2.2.0/go.mod h1:8sgkZQ0Dqz++59nA6JmTHXg1Z9c6hc7DUW78114c7x4=
+github.com/rosedblabs/rosedb/v2 v2.2.1-0.20230626152404-b94114c4dd1e h1:6JAVA00HHfwzPeH2YTp82+fIWLcP1K7HzhLAPJQZ1FA=
+github.com/rosedblabs/rosedb/v2 v2.2.1-0.20230626152404-b94114c4dd1e/go.mod h1:8sgkZQ0Dqz++59nA6JmTHXg1Z9c6hc7DUW78114c7x4=
 github.com/rosedblabs/wal v1.1.0 h1:ahD8V2kzGaY99SWDQ9o4jqzKru+8hI4nIipqhYjOLvs=
 github.com/rosedblabs/wal v1.1.0/go.mod h1:tYh0WapCkDQrID7PNsNHpsZDlkTczJVAFaTySmwaD7U=
 github.com/russross/blackfriday v1.5.2/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
@@ -303,8 +303,8 @@ github.com/yudai/pp v2.0.1+incompatible/go.mod h1:PuxR/8QJ7cyCkFp/aUDS+JY727OFEZ
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
-go.etcd.io/bbolt v1.3.7-0.20230620082749-170af8251e39 h1:y3f/h6MtZw+HrGpOQR8XVyGNOZIXzNbn7ckH8MFfEks=
-go.etcd.io/bbolt v1.3.7-0.20230620082749-170af8251e39/go.mod h1:ACm2A7OqJKSTCJwcQUwf+QAEsQjaKpxPiDbNAoOew6c=
+go.etcd.io/bbolt v1.3.7-0.20230626162837-be462e6f66b3 h1:vNlZoHxrtC1ecJ4n9c+z6laGDq8/xP5dDAQ3vFMs10c=
+go.etcd.io/bbolt v1.3.7-0.20230626162837-be462e6f66b3/go.mod h1:ACm2A7OqJKSTCJwcQUwf+QAEsQjaKpxPiDbNAoOew6c=
 go.opencensus.io v0.24.0 h1:y73uSU6J157QMP2kn2r30vwW1A2W2WFwSCGnAVxeaD0=
 go.opencensus.io v0.24.0/go.mod h1:vNK8G9p7aAivkbmorf4v+7Hgx+Zs0yY+0fOtgBfjQKo=
 golang.org/x/crypto v0.0.0-20181203042331-505ab145d0a9/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
