@@ -243,8 +243,8 @@ github.com/rogpeppe/go-internal v1.10.0 h1:TMyTOH3F/DB16zRVcYyreMH6GnZZrwQVAoYjR
 github.com/rogpeppe/go-internal v1.10.0/go.mod h1:UQnix2H7Ngw/k4C5ijL5+65zddjncjaFoBhdsK/akog=
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90 h1:AeuxZLgpVnxCjR6mvRJiDQATgOeSme59HX/rWCBjjvw=
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90/go.mod h1:Hk7adp95/ngEfetvapVWdgneuZb15mi9nH/keSH/KqI=
-github.com/rosedblabs/rosedb/v2 v2.2.1-0.20230626152404-b94114c4dd1e h1:6JAVA00HHfwzPeH2YTp82+fIWLcP1K7HzhLAPJQZ1FA=
-github.com/rosedblabs/rosedb/v2 v2.2.1-0.20230626152404-b94114c4dd1e/go.mod h1:8sgkZQ0Dqz++59nA6JmTHXg1Z9c6hc7DUW78114c7x4=
+github.com/rosedblabs/rosedb/v2 v2.2.1-0.20230702154935-8a7240b2cb35 h1:luV1y8sr4wxTk8ImVxtDLuyuTT7zAMdqxaPgHFvkC/M=
+github.com/rosedblabs/rosedb/v2 v2.2.1-0.20230702154935-8a7240b2cb35/go.mod h1:8sgkZQ0Dqz++59nA6JmTHXg1Z9c6hc7DUW78114c7x4=
 github.com/rosedblabs/wal v1.1.0 h1:ahD8V2kzGaY99SWDQ9o4jqzKru+8hI4nIipqhYjOLvs=
 github.com/rosedblabs/wal v1.1.0/go.mod h1:tYh0WapCkDQrID7PNsNHpsZDlkTczJVAFaTySmwaD7U=
 github.com/russross/blackfriday v1.5.2/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
