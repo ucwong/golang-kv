@@ -32,8 +32,8 @@ github.com/cockroachdb/errors v1.9.1/go.mod h1:2sxOtL2WIc096WSZqZ5h8fa17rdDq9HZO
 github.com/cockroachdb/logtags v0.0.0-20211118104740-dabe8e521a4f/go.mod h1:Vz9DsVWQQhf3vs21MhPMZpMGSht7O/2vFW2xusFUVOs=
 github.com/cockroachdb/logtags v0.0.0-20230118201751-21c54148d20b h1:r6VH0faHjZeQy818SGhaone5OnYfxFR/+AzdY3sf5aE=
 github.com/cockroachdb/logtags v0.0.0-20230118201751-21c54148d20b/go.mod h1:Vz9DsVWQQhf3vs21MhPMZpMGSht7O/2vFW2xusFUVOs=
-github.com/cockroachdb/pebble v0.0.0-20230628214518-57ede2d9032d h1:u7k1o3IuRR2UGn4DrQ584MmykUJcnuxpbcGaXIzLIac=
-github.com/cockroachdb/pebble v0.0.0-20230628214518-57ede2d9032d/go.mod h1:FN5O47SBEz5+kO9fG8UTR64g2WS1u5ZFCgTvxGjoSks=
+github.com/cockroachdb/pebble v0.0.0-20230701135918-609ae80aea41 h1:lYBVTS2P5fx79WWjoR/Gf4Fx5sZiIVCFWpuxntyiskY=
+github.com/cockroachdb/pebble v0.0.0-20230701135918-609ae80aea41/go.mod h1:FN5O47SBEz5+kO9fG8UTR64g2WS1u5ZFCgTvxGjoSks=
 github.com/cockroachdb/redact v1.1.3/go.mod h1:BVNblN9mBWFyMyqK1k3AAiSxhvhfK2oOZZ2lK+dpvRg=
 github.com/cockroachdb/redact v1.1.4 h1:Y0XrVI2FAyofNyGveodTN//qdpPtFKcKTeCBsK3AHAQ=
 github.com/cockroachdb/redact v1.1.4/go.mod h1:BVNblN9mBWFyMyqK1k3AAiSxhvhfK2oOZZ2lK+dpvRg=
@@ -243,8 +243,8 @@ github.com/rogpeppe/go-internal v1.10.0 h1:TMyTOH3F/DB16zRVcYyreMH6GnZZrwQVAoYjR
 github.com/rogpeppe/go-internal v1.10.0/go.mod h1:UQnix2H7Ngw/k4C5ijL5+65zddjncjaFoBhdsK/akog=
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90 h1:AeuxZLgpVnxCjR6mvRJiDQATgOeSme59HX/rWCBjjvw=
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90/go.mod h1:Hk7adp95/ngEfetvapVWdgneuZb15mi9nH/keSH/KqI=
-github.com/rosedblabs/rosedb/v2 v2.2.1-0.20230626152404-b94114c4dd1e h1:6JAVA00HHfwzPeH2YTp82+fIWLcP1K7HzhLAPJQZ1FA=
-github.com/rosedblabs/rosedb/v2 v2.2.1-0.20230626152404-b94114c4dd1e/go.mod h1:8sgkZQ0Dqz++59nA6JmTHXg1Z9c6hc7DUW78114c7x4=
+github.com/rosedblabs/rosedb/v2 v2.2.1-0.20230702154935-8a7240b2cb35 h1:luV1y8sr4wxTk8ImVxtDLuyuTT7zAMdqxaPgHFvkC/M=
+github.com/rosedblabs/rosedb/v2 v2.2.1-0.20230702154935-8a7240b2cb35/go.mod h1:8sgkZQ0Dqz++59nA6JmTHXg1Z9c6hc7DUW78114c7x4=
 github.com/rosedblabs/wal v1.1.0 h1:ahD8V2kzGaY99SWDQ9o4jqzKru+8hI4nIipqhYjOLvs=
 github.com/rosedblabs/wal v1.1.0/go.mod h1:tYh0WapCkDQrID7PNsNHpsZDlkTczJVAFaTySmwaD7U=
 github.com/russross/blackfriday v1.5.2/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
