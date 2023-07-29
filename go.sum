@@ -142,10 +142,10 @@ github.com/rogpeppe/go-internal v1.11.0 h1:cWPaGQEPrBb5/AsnsZesgZZ9yb1OQ+GOISoDN
 github.com/rogpeppe/go-internal v1.11.0/go.mod h1:ddIwULY96R17DhadqLgMfk9H9tvdUzkipdSkR5nkCZA=
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90 h1:AeuxZLgpVnxCjR6mvRJiDQATgOeSme59HX/rWCBjjvw=
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90/go.mod h1:Hk7adp95/ngEfetvapVWdgneuZb15mi9nH/keSH/KqI=
-github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230728140315-2e1cfd7cf460 h1:O3ySeJq5U/7gWIhusiEkH8qPUdfz+GV1ANTzw/V5b10=
-github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230728140315-2e1cfd7cf460/go.mod h1:+wqVV/5j7MiGnieY+nSEi4RCxp2N8elVkWhY6THV12U=
-github.com/rosedblabs/wal v1.2.1-0.20230720135650-d5d56517e0a3 h1:DPpD7TUu1unF8Kq+VW9F2Qp+ZqQzprUEDDHFMA1QZfA=
-github.com/rosedblabs/wal v1.2.1-0.20230720135650-d5d56517e0a3/go.mod h1:tYh0WapCkDQrID7PNsNHpsZDlkTczJVAFaTySmwaD7U=
+github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230729072225-0ac294e9358f h1:hEPQOEJ5a7jjPljY/KhoeesAhLERczCobEmJnZcm3gA=
+github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230729072225-0ac294e9358f/go.mod h1:xJznOw9Jhj3jXJCtGnyJultF7aq9g19sG/Y54Z//SBU=
+github.com/rosedblabs/wal v1.2.1-0.20230729070929-b03783455406 h1:WaamfEHdTkziRX5di/S2jF7biU+BCPD+bExtkWAjDeY=
+github.com/rosedblabs/wal v1.2.1-0.20230729070929-b03783455406/go.mod h1:tYh0WapCkDQrID7PNsNHpsZDlkTczJVAFaTySmwaD7U=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.4.0/go.mod h1:YvHI0jy2hoMjB+UWwv71VJQ9isScKT/TqJzVSSt89Yw=
 github.com/stretchr/objx v0.5.0/go.mod h1:Yh+to48EsGEfYuaHDzXPcE3xhTkx73EhmCGUpEOglKo=
