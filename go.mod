@@ -5,11 +5,11 @@ go 1.20
 require (
 	github.com/cockroachdb/pebble v0.0.0-20230728201528-5e7f88523982
 	github.com/dgraph-io/badger/v4 v4.0.2-0.20230718055455-ec80d3d3526a
-	github.com/nutsdb/nutsdb v0.12.7-0.20230727095039-1951f280925a
+	github.com/nutsdb/nutsdb v0.12.7-0.20230729163545-bc1a538785ca
 	github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230729072225-0ac294e9358f
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
-	go.etcd.io/bbolt v1.3.7-0.20230726063800-39d812baeb46
+	go.etcd.io/bbolt v1.3.7-0.20230729144941-d0a911ef4006
 )
 
 require (
@@ -23,6 +23,7 @@ require (
 	github.com/cockroachdb/tokenbucket v0.0.0-20230613231145-182959a1fad6 // indirect
 	github.com/dgraph-io/ristretto v0.1.1 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
+	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/getsentry/sentry-go v0.22.0 // indirect
 	github.com/gofrs/flock v0.8.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
