@@ -3,13 +3,13 @@ module github.com/ucwong/golang-kv
 go 1.20
 
 require (
-	github.com/cockroachdb/pebble v0.0.0-20230728201528-5e7f88523982
-	github.com/dgraph-io/badger/v4 v4.0.2-0.20230718055455-ec80d3d3526a
-	github.com/nutsdb/nutsdb v0.12.7-0.20230729163545-bc1a538785ca
+	github.com/cockroachdb/pebble v0.0.0-20230731172311-9c487492d79e
+	github.com/dgraph-io/badger/v4 v4.0.2-0.20230731151745-c2e611ac7cc6
+	github.com/nutsdb/nutsdb v0.13.0
 	github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230729072225-0ac294e9358f
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
-	go.etcd.io/bbolt v1.3.7-0.20230729144941-d0a911ef4006
+	go.etcd.io/bbolt v1.3.7-0.20230801094426-2478f30edc36
 )
 
 require (
@@ -44,7 +44,7 @@ require (
 	github.com/prometheus/procfs v0.11.0 // indirect
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90 // indirect
-	github.com/rosedblabs/wal v1.2.1-0.20230729070929-b03783455406 // indirect
+	github.com/rosedblabs/wal v1.2.1-0.20230801082200-05168be4594f // indirect
 	github.com/xujiajun/mmap-go v1.0.1 // indirect
 	github.com/xujiajun/utils v0.0.0-20220904132955-5f7c5b914235 // indirect
 	go.opencensus.io v0.24.0 // indirect
