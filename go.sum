@@ -146,8 +146,8 @@ github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90/go.mod h1:Hk7adp95/ngEfetvapVWdgneuZb15mi9nH/keSH/KqI=
 github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230729072225-0ac294e9358f h1:hEPQOEJ5a7jjPljY/KhoeesAhLERczCobEmJnZcm3gA=
 github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230729072225-0ac294e9358f/go.mod h1:xJznOw9Jhj3jXJCtGnyJultF7aq9g19sG/Y54Z//SBU=
-github.com/rosedblabs/wal v1.2.1-0.20230801082200-05168be4594f h1:+7vcGyTOn9s8GVyA3QKzcDp/HBUbwkBXBpguM79LWXI=
-github.com/rosedblabs/wal v1.2.1-0.20230801082200-05168be4594f/go.mod h1:tYh0WapCkDQrID7PNsNHpsZDlkTczJVAFaTySmwaD7U=
+github.com/rosedblabs/wal v1.3.1 h1:QFAmnEPGJgUYfbn9WRO/43VkDdXVo9AacRcB0FfCNTI=
+github.com/rosedblabs/wal v1.3.1/go.mod h1:tYh0WapCkDQrID7PNsNHpsZDlkTczJVAFaTySmwaD7U=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.4.0/go.mod h1:YvHI0jy2hoMjB+UWwv71VJQ9isScKT/TqJzVSSt89Yw=
 github.com/stretchr/objx v0.5.0/go.mod h1:Yh+to48EsGEfYuaHDzXPcE3xhTkx73EhmCGUpEOglKo=
