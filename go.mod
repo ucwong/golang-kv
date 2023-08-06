@@ -6,10 +6,10 @@ require (
 	github.com/cockroachdb/pebble v0.0.0-20230804232740-ff9402f082b3
 	github.com/dgraph-io/badger/v4 v4.2.0
 	github.com/nutsdb/nutsdb v0.13.1-0.20230803123437-a81dd1afaf2f
-	github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230729072225-0ac294e9358f
+	github.com/rosedblabs/rosedb/v2 v2.2.2
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
-	go.etcd.io/bbolt v1.3.7-0.20230801170136-b7798fd9c186
+	go.etcd.io/bbolt v1.3.7-0.20230806064051-b2a3debdd0eb
 )
 
 require (

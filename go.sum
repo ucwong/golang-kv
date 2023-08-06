@@ -144,8 +144,8 @@ github.com/rogpeppe/go-internal v1.11.0 h1:cWPaGQEPrBb5/AsnsZesgZZ9yb1OQ+GOISoDN
 github.com/rogpeppe/go-internal v1.11.0/go.mod h1:ddIwULY96R17DhadqLgMfk9H9tvdUzkipdSkR5nkCZA=
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90 h1:AeuxZLgpVnxCjR6mvRJiDQATgOeSme59HX/rWCBjjvw=
 github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90/go.mod h1:Hk7adp95/ngEfetvapVWdgneuZb15mi9nH/keSH/KqI=
-github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230729072225-0ac294e9358f h1:hEPQOEJ5a7jjPljY/KhoeesAhLERczCobEmJnZcm3gA=
-github.com/rosedblabs/rosedb/v2 v2.2.2-0.20230729072225-0ac294e9358f/go.mod h1:xJznOw9Jhj3jXJCtGnyJultF7aq9g19sG/Y54Z//SBU=
+github.com/rosedblabs/rosedb/v2 v2.2.2 h1:LtzL5fya57RZ5aRH+V+opUcB6G+yxs5Wk/t5Yt5+kas=
+github.com/rosedblabs/rosedb/v2 v2.2.2/go.mod h1:O62E80aqxZC2L6P4yMiyYM3dzbCaFNT/LnOWKzmmVHk=
 github.com/rosedblabs/wal v1.3.1 h1:QFAmnEPGJgUYfbn9WRO/43VkDdXVo9AacRcB0FfCNTI=
 github.com/rosedblabs/wal v1.3.1/go.mod h1:tYh0WapCkDQrID7PNsNHpsZDlkTczJVAFaTySmwaD7U=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
@@ -169,8 +169,8 @@ github.com/xujiajun/utils v0.0.0-20220904132955-5f7c5b914235 h1:w0si+uee0iAaCJO9
 github.com/xujiajun/utils v0.0.0-20220904132955-5f7c5b914235/go.mod h1:MR4+0R6A9NS5IABnIM3384FfOq8QFVnm7WDrBOhIaMU=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
-go.etcd.io/bbolt v1.3.7-0.20230801170136-b7798fd9c186 h1:D538Q4+4MiknhNMUuZ7lTTTNal+Z2L3FaRxDXMN4v10=
-go.etcd.io/bbolt v1.3.7-0.20230801170136-b7798fd9c186/go.mod h1:tCLU+uUFxfeBExAI72R2+ReNwp/+wSXLxVuPQnoXEFg=
+go.etcd.io/bbolt v1.3.7-0.20230806064051-b2a3debdd0eb h1:03G1Um0wgO4UyuQb/DrXi+V1r04hgoNju3uDA1noE+M=
+go.etcd.io/bbolt v1.3.7-0.20230806064051-b2a3debdd0eb/go.mod h1:tCLU+uUFxfeBExAI72R2+ReNwp/+wSXLxVuPQnoXEFg=
 go.opencensus.io v0.24.0 h1:y73uSU6J157QMP2kn2r30vwW1A2W2WFwSCGnAVxeaD0=
 go.opencensus.io v0.24.0/go.mod h1:vNK8G9p7aAivkbmorf4v+7Hgx+Zs0yY+0fOtgBfjQKo=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
