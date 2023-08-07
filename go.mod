@@ -3,9 +3,9 @@ module github.com/ucwong/golang-kv
 go 1.20
 
 require (
-	github.com/cockroachdb/pebble v0.0.0-20230804232740-ff9402f082b3
-	github.com/dgraph-io/badger/v4 v4.2.0
-	github.com/nutsdb/nutsdb v0.13.1-0.20230803123437-a81dd1afaf2f
+	github.com/cockroachdb/pebble v0.0.0-20230807191416-ff5c929ac1c7
+	github.com/dgraph-io/badger/v4 v4.2.1-0.20230807025546-aefda1a33629
+	github.com/nutsdb/nutsdb v0.13.1-0.20230807143921-22febfa73713
 	github.com/rosedblabs/rosedb/v2 v2.2.2
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
@@ -45,6 +45,7 @@ require (
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90 // indirect
 	github.com/rosedblabs/wal v1.3.1 // indirect
+	github.com/tidwall/btree v1.6.0 // indirect
 	github.com/xujiajun/mmap-go v1.0.1 // indirect
 	github.com/xujiajun/utils v0.0.0-20220904132955-5f7c5b914235 // indirect
 	go.opencensus.io v0.24.0 // indirect
