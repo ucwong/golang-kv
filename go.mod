@@ -3,9 +3,9 @@ module github.com/ucwong/golang-kv
 go 1.20
 
 require (
-	github.com/cockroachdb/pebble v0.0.0-20230905184020-7ffe773358b8
+	github.com/cockroachdb/pebble v0.0.0-20230905224231-5283f24b2a69
 	github.com/dgraph-io/badger/v4 v4.2.1-0.20230830160901-c57a5c9b91cd
-	github.com/nutsdb/nutsdb v0.14.1-0.20230904003002-46226a2f8ca6
+	github.com/nutsdb/nutsdb v0.14.1-0.20230906030346-8f8d8de01382
 	github.com/rosedblabs/rosedb/v2 v2.2.2
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
