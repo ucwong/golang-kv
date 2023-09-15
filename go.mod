@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/cockroachdb/pebble v0.0.0-20230915084130-336c99798a6d
 	github.com/dgraph-io/badger/v4 v4.2.1-0.20230909123407-5f004c4ef084
-	github.com/nutsdb/nutsdb v0.14.1-0.20230907051708-51c9f276ec7b
+	github.com/nutsdb/nutsdb v0.14.1-0.20230915093218-a1a81e6a48a8
 	github.com/rosedblabs/rosedb/v2 v2.2.2
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
