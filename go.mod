@@ -1,15 +1,15 @@
 module github.com/ucwong/golang-kv
 
-go 1.20
+go 1.21
 
 require (
-	github.com/cockroachdb/pebble v0.0.0-20230915084130-336c99798a6d
+	github.com/cockroachdb/pebble v0.0.0-20230915152238-6d6570bf1e25
 	github.com/dgraph-io/badger/v4 v4.2.1-0.20230909123407-5f004c4ef084
 	github.com/nutsdb/nutsdb v0.14.1-0.20230915093218-a1a81e6a48a8
 	github.com/rosedblabs/rosedb/v2 v2.2.2
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
-	go.etcd.io/bbolt v1.3.7-0.20230906090433-ead6b854aac9
+	go.etcd.io/bbolt v1.3.7-0.20230915155312-e68232598291
 )
 
 require (
@@ -29,7 +29,7 @@ require (
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/gofrs/flock v0.8.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/glog v1.0.0 // indirect
+	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
