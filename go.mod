@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/cockroachdb/pebble v0.0.0-20230926191106-14b8ccdc517d
-	github.com/dgraph-io/badger/v4 v4.2.1-0.20230909123407-5f004c4ef084
+	github.com/dgraph-io/badger/v4 v4.2.1-0.20230926211412-3a8a5af47dc0
 	github.com/nutsdb/nutsdb v0.14.2-0.20230920145144-f8fd5522a634
 	github.com/rosedblabs/rosedb/v2 v2.2.2
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
