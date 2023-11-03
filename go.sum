@@ -215,8 +215,8 @@ github.com/modern-go/reflect2 v1.0.1/go.mod h1:bx2lNnkwVCuqBIxFjflWJWanXIb3Rllmb
 github.com/modern-go/reflect2 v1.0.2/go.mod h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjYzDa0/r8luk=
 github.com/mwitkow/go-conntrack v0.0.0-20161129095857-cc309e4a2223/go.mod h1:qRWi+5nqEBWmkhHvq77mSJWrCKwh8bxhgT7d/eI7P4U=
 github.com/mwitkow/go-conntrack v0.0.0-20190716064945-2f068394615f/go.mod h1:qRWi+5nqEBWmkhHvq77mSJWrCKwh8bxhgT7d/eI7P4U=
-github.com/nutsdb/nutsdb v0.14.2-0.20231030013203-ab48e22d420c h1:RpUdIQ+EJJUZoHR8cVfA1mWpFx7AZ9i+Qu+51/MgECs=
-github.com/nutsdb/nutsdb v0.14.2-0.20231030013203-ab48e22d420c/go.mod h1:6inOji9rFBporXeHDjJny4g50RpQbkjSK5jI1hht0j8=
+github.com/nutsdb/nutsdb v0.14.2-0.20231103034711-27317a34fc58 h1:e5UMeoxSrqZYa8qV9npLMxT/DbI2X+WLUn/sr1UqAME=
+github.com/nutsdb/nutsdb v0.14.2-0.20231103034711-27317a34fc58/go.mod h1:6inOji9rFBporXeHDjJny4g50RpQbkjSK5jI1hht0j8=
 github.com/nxadm/tail v1.4.4/go.mod h1:kenIhsEOeOJmVchQTgglprH7qJGnHDVpk1VPCcaMI8A=
 github.com/nxadm/tail v1.4.8 h1:nPr65rt6Y5JFSKQO7qToXr7pePgD6Gwiw05lkbyAQTE=
 github.com/nxadm/tail v1.4.8/go.mod h1:+ncqLTQzXmGhMZNUePPaPqPvBxHAIsmXswZKocGu+AU=
