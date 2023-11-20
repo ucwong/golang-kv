@@ -9,7 +9,7 @@ require (
 	github.com/rosedblabs/rosedb/v2 v2.2.2
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
-	go.etcd.io/bbolt v1.3.7-0.20231114122047-33db274134cc
+	go.etcd.io/bbolt v1.3.7-0.20231120095456-947a3f342c94
 )
 
 require (
