@@ -6,7 +6,6 @@ require (
 	github.com/cockroachdb/pebble v0.0.0-20231222152533-1cce3d01f6d9
 	github.com/dgraph-io/badger/v4 v4.2.1-0.20231218065111-7b5baa11879c
 	github.com/nutsdb/nutsdb v1.0.3-0.20231224042427-ed51a64e0297
-	github.com/rosedblabs/rosedb/v2 v2.2.2
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
 	go.etcd.io/bbolt v1.3.7-0.20231211160616-a7a791ca815e
@@ -33,7 +32,6 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/flatbuffers v1.12.1 // indirect
-	github.com/hashicorp/golang-lru/v2 v2.0.4 // indirect
 	github.com/klauspost/compress v1.15.15 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/kr/text v0.2.0 // indirect
@@ -44,8 +42,6 @@ require (
 	github.com/prometheus/common v0.32.1 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
 	github.com/rogpeppe/go-internal v1.9.0 // indirect
-	github.com/rosedblabs/go-immutable-radix/v2 v2.0.1-0.20230614125820-f2a7bc058c90 // indirect
-	github.com/rosedblabs/wal v1.3.1 // indirect
 	github.com/tidwall/btree v1.6.0 // indirect
 	github.com/xujiajun/mmap-go v1.0.1 // indirect
 	github.com/xujiajun/utils v0.0.0-20220904132955-5f7c5b914235 // indirect
