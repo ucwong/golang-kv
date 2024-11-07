@@ -6,7 +6,7 @@ toolchain go1.23.2
 
 require (
 	github.com/cockroachdb/pebble v1.1.2
-	github.com/dgraph-io/badger/v4 v4.3.2-0.20241025163334-7f657f862cbd
+	github.com/dgraph-io/badger/v4 v4.3.2-0.20241105123836-dcaa109ee632
 	github.com/nutsdb/nutsdb v1.0.4
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
