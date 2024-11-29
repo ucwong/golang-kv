@@ -6,7 +6,7 @@ toolchain go1.23.2
 
 require (
 	github.com/cockroachdb/pebble v1.1.2
-	github.com/dgraph-io/badger/v4 v4.4.1-0.20241113212926-36c461a435c5
+	github.com/dgraph-io/badger/v4 v4.5.0
 	github.com/nutsdb/nutsdb v1.0.4
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
@@ -31,7 +31,6 @@ require (
 	github.com/gofrs/flock v0.12.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
-	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/flatbuffers v24.3.25+incompatible // indirect
 	github.com/klauspost/compress v1.17.11 // indirect
