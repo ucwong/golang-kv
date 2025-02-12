@@ -36,8 +36,8 @@ github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ3
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/dgraph-io/badger/v4 v4.5.2-0.20250207130643-e83e3f82f6a1 h1:hm5j0G5DRCbR8jxFj085H8WLuoYVk2VhkGZ1d1tjALM=
-github.com/dgraph-io/badger/v4 v4.5.2-0.20250207130643-e83e3f82f6a1/go.mod h1:UbQ5qiTgSd87jjvE9zxanNXbaa6eP6bVtm4A4/loWOg=
+github.com/dgraph-io/badger/v4 v4.5.2-0.20250211143707-6e1f4cf99e98 h1:OboTCj1eXUvx7mtnUXtN7lJwdsUG8AMHjki2rkRd42M=
+github.com/dgraph-io/badger/v4 v4.5.2-0.20250211143707-6e1f4cf99e98/go.mod h1:UbQ5qiTgSd87jjvE9zxanNXbaa6eP6bVtm4A4/loWOg=
 github.com/dgraph-io/ristretto/v2 v2.1.0 h1:59LjpOJLNDULHh8MC4UaegN52lC4JnO2dITsie/Pa8I=
 github.com/dgraph-io/ristretto/v2 v2.1.0/go.mod h1:uejeqfYXpUomfse0+lO+13ATz4TypQYLJZzBSAemuB4=
 github.com/dgryski/go-farm v0.0.0-20200201041132-a6ae2369ad13 h1:fAjc9m62+UWV/WAFKLNi6ZS0675eEUC9y3AlwSbQu1Y=
