@@ -6,7 +6,7 @@ toolchain go1.23.2
 
 require (
 	github.com/cockroachdb/pebble v1.1.4
-	github.com/dgraph-io/badger/v4 v4.5.2-0.20250214162949-dbd54c209506
+	github.com/dgraph-io/badger/v4 v4.5.2-0.20250219023702-efe2eb3ebb36
 	github.com/nutsdb/nutsdb v1.0.4
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
@@ -28,9 +28,10 @@ require (
 	github.com/dgraph-io/ristretto/v2 v2.1.0 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/getsentry/sentry-go v0.29.1 // indirect
+	github.com/go-logr/logr v1.4.2 // indirect
+	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/gofrs/flock v0.12.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/flatbuffers v25.2.10+incompatible // indirect
 	github.com/klauspost/compress v1.17.11 // indirect
@@ -46,7 +47,10 @@ require (
 	github.com/tidwall/btree v1.7.0 // indirect
 	github.com/xujiajun/mmap-go v1.0.1 // indirect
 	github.com/xujiajun/utils v0.0.0-20220904132955-5f7c5b914235 // indirect
-	go.opencensus.io v0.24.0 // indirect
+	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
+	go.opentelemetry.io/otel v1.34.0 // indirect
+	go.opentelemetry.io/otel/metric v1.34.0 // indirect
+	go.opentelemetry.io/otel/trace v1.34.0 // indirect
 	golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c // indirect
 	golang.org/x/net v0.35.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
