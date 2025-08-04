@@ -6,7 +6,7 @@ toolchain go1.24.1
 
 require (
 	github.com/cockroachdb/pebble v1.1.5
-	github.com/dgraph-io/badger/v4 v4.8.0
+	github.com/dgraph-io/badger/v4 v4.8.1-0.20250802090453-7a4b511fb568
 	github.com/nutsdb/nutsdb v1.0.4
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/ucwong/go-ttlmap v1.0.2-0.20221020173635-331e7ddde2bb
@@ -52,8 +52,8 @@ require (
 	go.opentelemetry.io/otel/metric v1.37.0 // indirect
 	go.opentelemetry.io/otel/trace v1.37.0 // indirect
 	golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c // indirect
-	golang.org/x/net v0.41.0 // indirect
+	golang.org/x/net v0.42.0 // indirect
 	golang.org/x/sys v0.34.0 // indirect
-	golang.org/x/text v0.26.0 // indirect
+	golang.org/x/text v0.27.0 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 )
